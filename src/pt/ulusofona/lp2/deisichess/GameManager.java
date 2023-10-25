@@ -5,42 +5,60 @@ import javax.swing.*;
 
 public class GameManager {
 
+    int boardSize;
+    ArrayList<Piece> pecas;
+    int rodada;
 
-    int getBoardSize() {
+    public GameManager(int boardSize) {
+        this.boardSize = boardSize;
+    }
+
+    public int getBoardSize() {
+        return boardSize;
+    }
+
+    public boolean move(int x0, int y0, int x1, int y1) {
+        return true;
+    }
+    public String[] getSquareInfo(int x, int y) {
+        if (x > boardSize || x < 0 || y > boardSize || y < 0) {
+            return null;
+
+        }
+        return null;
+    }
+    public String[] getPieceInfo (int ID) {
+        String[] pieceInfo = new String[5];
+        for (Piece piece : pecas) {
+            if(piece.getPieceID() == ID) {
+                pieceInfo[0] = String.valueOf(piece.getPieceID());
+                pieceInfo[1] = String.valueOf(piece.getTipoPeca());
+                pieceInfo[2] = String.valueOf(piece.getEquipa());
+                pieceInfo[3] = piece.getAlcunha();
+                pieceInfo[4] =piece.getIcone();
+            }
+        }
+        return pieceInfo;
+
+    }
+
+    public String getPieceInfoAsString(int ID) {
+        return null;
+    }
+    public int getCurrentTeamID() {
         return 0;
-    }
 
-    boolean move(int x0, int y0, int x1, int y1) {
-        return false;
     }
+    public boolean gameOver() {
+        return true;
 
-    String[] getSquareInfo(int x, int y) {
-        return new String[0];
     }
-
-    String[] getPieceInfo(int ID) {
-        return new String[0];
-    }
-
-    String getPieceInfoAsString(int ID) {
+    public ArrayList<String> getGameResults() {
         return null;
+
     }
-
-    int getCurrentTeamID() {
-        return 0;
-    }
-
-    boolean gameOver() {
-        return false;
-    }
-
-
-     ArrayList<String> getGameResults() {
+    public JPanel getAuthorsPanel() {
         return null;
+
     }
-
-     JPanel getAuthorsPanel() {
-        return null;
-     }
-
 }
