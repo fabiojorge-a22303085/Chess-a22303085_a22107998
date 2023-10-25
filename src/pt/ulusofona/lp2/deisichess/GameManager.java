@@ -70,20 +70,30 @@ public class GameManager {
     }
 
 
-
-
-
-
-
     public boolean move(int x0, int y0, int x1, int y1) {
         return true;
     }
     public String[] getSquareInfo(int x, int y) {
+
+        String[] squareInfo = new String[5];
         if (x > boardSize || x < 0 || y > boardSize || y < 0) {
             return null;
-
         }
-        return null;
+        for(Piece peca : pecas) {
+            if (x == peca.getPosicaoX() && y == peca.getPosicaoY()) {
+                squareInfo[0] = peca.getPieceIDAsString();
+                squareInfo[1] = peca.getTipoPecaAsString();
+                squareInfo[2] = peca.getEquipaAsString();
+                squareInfo[3] = peca.getAlcunha();
+                squareInfo[4] = peca.getIcone();
+            }
+        }
+        if(squareInfo[0] == null) {
+            return null;
+        } else {
+            return squareInfo;
+        }
+
     }
     public String[] getPieceInfo (int ID) {
         String[] pieceInfo = new String[5];

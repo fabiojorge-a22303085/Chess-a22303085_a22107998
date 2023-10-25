@@ -6,8 +6,8 @@ public class Piece {
     int equipa;
     String alcunha;
     String icone;
-    Integer posicaoX;
-    Integer posicaoY;
+    int posicaoX;
+    int posicaoY;
 
     public Piece(int ID, int tipoPeca, int equipa, String alcunha, Integer posicaoX, Integer posicaoY) {
         this.ID = ID;
@@ -32,14 +32,15 @@ public class Piece {
     public String getIcone() {
         return icone;
     }
-    public Integer getPosicaoX() {
+
+    public int getPosicaoX() {
         return posicaoX;
     }
-    public Integer getPosicaoY() {
+    public int getPosicaoY() {
         return posicaoY;
     }
     public String getPosicaoXY() {
-        return "(" + posicaoX.toString() + "," + posicaoY.toString() + ")";
+        return "(" + String.valueOf(posicaoX) + "," + String.valueOf(posicaoY) + ")";
     }
     public String getPieceIDAsString() {
         return String.valueOf(ID);
@@ -51,27 +52,4 @@ public class Piece {
         return String.valueOf(ID);
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
-    }
-
-    public void setEquipa(int equipa) {
-        this.equipa = equipa;
-    }
-
-    public void setTipoPeca(int tipoPeca) {
-        this.tipoPeca = tipoPeca;
-    }
-
-    public void setAlcunha(String alcunha) {
-        this.alcunha = alcunha;
-    }
-
-    public void setPosicaoX(Integer posicaoX) {
-        this.posicaoX = posicaoX;
-    }
-
-    public void setPosicaoY(Integer posicaoY) {
-        this.posicaoY = posicaoY;
-    }
 }
