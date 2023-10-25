@@ -9,6 +9,7 @@ public class GameManager {
     int boardSize;
     ArrayList<Piece> pecas;
     int rodada;
+    int currentPlayer;
 
     public GameManager(int boardSize) {
     }
@@ -61,7 +62,12 @@ public class GameManager {
         return pieceInfoAsString;
     }
     public int getCurrentTeamID() {
-        return 0;
+        if(rodada % 2 == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
+
 
     }
     public boolean gameOver() {
