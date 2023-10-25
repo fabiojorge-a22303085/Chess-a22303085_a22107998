@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisichess;
 
+import java.io.File;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -10,11 +11,14 @@ public class GameManager {
     int rodada;
 
     public GameManager(int boardSize) {
-        this.boardSize = boardSize;
     }
 
     public int getBoardSize() {
         return boardSize;
+    }
+
+    public boolean loadFile(File file) {
+        return true;
     }
 
     public boolean move(int x0, int y0, int x1, int y1) {
@@ -31,11 +35,13 @@ public class GameManager {
         String[] pieceInfo = new String[5];
         for (Piece piece : pecas) {
             if(piece.getPieceID() == ID) {
-                pieceInfo[0] = String.valueOf(piece.getPieceID());
-                pieceInfo[1] = String.valueOf(piece.getTipoPeca());
-                pieceInfo[2] = String.valueOf(piece.getEquipa());
+                pieceInfo[0] = piece.getPieceIDAsString();
+                pieceInfo[1] = piece.getTipoPecaAsString();
+                pieceInfo[2] = piece.getEquipaAsString();
                 pieceInfo[3] = piece.getAlcunha();
                 pieceInfo[4] =piece.getIcone();
+            } else {
+                return null;
             }
         }
         return pieceInfo;
@@ -43,7 +49,16 @@ public class GameManager {
     }
 
     public String getPieceInfoAsString(int ID) {
-        return null;
+        String pieceInfoAsString = "";
+        for (Piece piece : pecas) {
+            if(piece.getPieceID() == ID) {
+                pieceInfoAsString += piece.getPieceIDAsString() + "|" + piece.getTipoPecaAsString() + "|" +
+                        piece.getEquipaAsString() + "|" + piece.getAlcunha() + "@" + piece.getPosicaoXY();
+            } else {
+                return null;
+            }
+            }
+        return pieceInfoAsString;
     }
     public int getCurrentTeamID() {
         return 0;

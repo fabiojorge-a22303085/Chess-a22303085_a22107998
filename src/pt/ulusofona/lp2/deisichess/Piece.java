@@ -43,4 +43,13 @@ public class Piece {
     public String getPosicaoXY() {
         return "(" + posicaoX.toString() + "," + posicaoY.toString() + ")";
     }
+    public String getPieceIDAsString() {
+        return String.valueOf(ID);
+    }
+    public String getTipoPecaAsString() {
+        return String.valueOf(ID);
+    }
+    public String getEquipaAsString() {
+        return String.valueOf(ID);
+    }
 }
