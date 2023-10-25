@@ -1,6 +1,6 @@
 package pt.ulusofona.lp2.deisichess;
-
-import java.io.File;
+import java.io.*;
+import java.io.FileReader;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -19,7 +19,33 @@ public class GameManager {
     }
 
     public boolean loadFile(File file) {
-        return true;
+        ArrayList<String> lines = new ArrayList<>();
+
+        try {
+            if(file.exists()) {
+                FileReader fileReader = new FileReader(file);
+
+                BufferedReader bufferedReader = new BufferedReader(fileReader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    lines.add(line);
+                }
+                bufferedReader.close();
+                fileReader.close();
+            } else {
+                return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        if(lines.size() == 12) {
+            
+        }
+
+
+
+
+
     }
 
     public boolean move(int x0, int y0, int x1, int y1) {
