@@ -9,13 +9,11 @@ public class Piece {
     Integer posicaoX;
     Integer posicaoY;
 
-    public Piece(int ID, int tipoPeca, int equipa, Integer posicaoX, Integer posicaoY) {
+    public Piece(int ID, int tipoPeca, int equipa, String alcunha, Integer posicaoX, Integer posicaoY) {
         this.ID = ID;
         this.tipoPeca = tipoPeca;
         this.equipa = equipa;
-        if(tipoPeca == 0) {
-            this.alcunha = "Chefe";
-        }
+        this.alcunha = alcunha;
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
     }
@@ -51,5 +49,29 @@ public class Piece {
     }
     public String getEquipaAsString() {
         return String.valueOf(ID);
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
+    public void setEquipa(int equipa) {
+        this.equipa = equipa;
+    }
+
+    public void setTipoPeca(int tipoPeca) {
+        this.tipoPeca = tipoPeca;
+    }
+
+    public void setAlcunha(String alcunha) {
+        this.alcunha = alcunha;
+    }
+
+    public void setPosicaoX(Integer posicaoX) {
+        this.posicaoX = posicaoX;
+    }
+
+    public void setPosicaoY(Integer posicaoY) {
+        this.posicaoY = posicaoY;
     }
 }

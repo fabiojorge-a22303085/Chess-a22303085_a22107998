@@ -22,7 +22,7 @@ public class GameManager {
         ArrayList<String> lines = new ArrayList<>();
 
         try {
-            if(file.exists()) {
+            if (file.exists()) {
                 FileReader fileReader = new FileReader(file);
 
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -38,15 +38,42 @@ public class GameManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        if(lines.size() == 12) {
-            
+        if (lines.size() == 12) {
+            boardSize = 4;
+            pecas.add(new Piece(1, 0, 0 , "Chefe", 1, 0));
+            pecas.add(new Piece(2, 0, 0 , "Selvagem", 4, 0));
+            pecas.add(new Piece(3, 0, 0 , "Grande Artista", 1, 3));
+            pecas.add(new Piece(4, 0, 1 , "Maior", 3, 4));
+            pecas.add(new Piece(5, 0, 1 , "Amigo", 2, 4));
+            pecas.add(new Piece(6, 0, 1 , "Beberolas", 2, 3));
+
+            return true;
+
+        } else if (lines.size() == 20) {
+            boardSize = 8;
+            pecas.add(new Piece(1, 0, 0 , "Chefe", 1, 0));
+            pecas.add(new Piece(2, 0, 0 , "Selvagem", 4, 0));
+            pecas.add(new Piece(3, 0, 0 , "Grande Artista", 3, 1));
+            pecas.add(new Piece(4, 0, 0 , "Amante de Prata", 5, 1));
+            pecas.add(new Piece(5, 0, 0 , "Artolas", 7, 1));
+            pecas.add(new Piece(6, 0, 1 , "Maior", 5, 6));
+            pecas.add(new Piece(7, 0, 1 , "Amigo", 3, 7));
+            pecas.add(new Piece(8, 0, 1 , "Beberolas", 7, 7));
+            pecas.add(new Piece(9, 0, 1 , "Esperto", 3, 8));
+            pecas.add(new Piece(10, 0, 1 , "Barulhento", 5, 8));
+
+            return true;
+
+        } else {
+            return false;
         }
-
-
-
-
-
     }
+
+
+
+
+
+
 
     public boolean move(int x0, int y0, int x1, int y1) {
         return true;
