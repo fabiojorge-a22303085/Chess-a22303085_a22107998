@@ -16,6 +16,7 @@ public class Piece {
         this.alcunha = alcunha;
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
+        this.icone = null;
     }
     public int getPieceID() {
         return ID;

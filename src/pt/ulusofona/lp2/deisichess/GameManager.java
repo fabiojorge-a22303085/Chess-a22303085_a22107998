@@ -11,14 +11,14 @@ public class GameManager {
     int rodada;
     int currentPlayer;
 
-    public GameManager(int boardSize) {
+    public GameManager() {
     }
 
     public int getBoardSize() {
         return boardSize;
     }
 
-    public boolean loadFile(File file) {
+    public boolean loadGame(File file) {
         ArrayList<String> lines = new ArrayList<>();
 
         try {
@@ -38,6 +38,8 @@ public class GameManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        pecas = new ArrayList<>();
         if (lines.size() == 12) {
             boardSize = 4;
             pecas.add(new Piece(1, 0, 0 , "Chefe", 1, 0));
