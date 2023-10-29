@@ -41,6 +41,13 @@ public class GameManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        for(int i = 0; i < elements.size(); i++) {
+            for(int j = 0; j < elements.get(i).length; j++) {
+                if(elements.get(i)[j] == null) {
+                    return false;
+                }
+            }
+        }
 
         pecas = new ArrayList<>();
         if(elements.size() == 12) {
@@ -61,7 +68,7 @@ public class GameManager {
                         for(Piece peca : pecas) {
                             if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
                                 peca.setPosicaoX(j);
-                                peca.setPosicaoY(i -8);
+                                peca.setPosicaoY(i - 8);
                             }
                         }
                     }
@@ -87,7 +94,7 @@ public class GameManager {
                         for(Piece peca : pecas) {
                             if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
                                 peca.setPosicaoX(j);
-                                peca.setPosicaoY(i -12);
+                                peca.setPosicaoY(i - 12);
                             }
                         }
                     }
@@ -98,7 +105,6 @@ public class GameManager {
         } else {
             return false;
         }
-
     }
 
 
@@ -158,7 +164,7 @@ public class GameManager {
             } else {
                 return null;
             }
-            }
+        }
         return pieceInfoAsString;
     }
     public int getCurrentTeamID() {
