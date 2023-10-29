@@ -9,6 +9,7 @@ public class GameManager {
     int boardSize;
     ArrayList<Piece> pecas;
     int rodada;
+    int nrPecas;
 
     public GameManager() {
     }
@@ -18,7 +19,7 @@ public class GameManager {
     }
 
     public boolean loadGame(File file) {
-        ArrayList<String> lines = new ArrayList<>();
+        ArrayList<String[]> elements = new ArrayList<>();
 
         try {
             if (file.exists()) {
@@ -27,7 +28,10 @@ public class GameManager {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    lines.add(line);
+                    String[] lineElements = line.split(":"); // Substitua a vírgula pelo delimitador correto
+
+                    // Adicionar os elementos da linha ao ArrayList de arrays de strings
+                    elements.add(lineElements);
                 }
                 bufferedReader.close();
                 fileReader.close();
@@ -39,7 +43,66 @@ public class GameManager {
         }
 
         pecas = new ArrayList<>();
-        if (lines.size() == 12) {
+        if(elements.size() == 12) {
+            boardSize = Integer.parseInt(elements.get(0)[0]);
+            nrPecas = Integer.parseInt(elements.get(1)[0]);
+
+            for(int i = 2; i < elements.size() - 4; i++ ) {
+                int idPeca = Integer.parseInt(elements.get(i)[0]);
+                int tipoPeca = Integer.parseInt(elements.get(i)[1]);
+                int equipaPeca = Integer.parseInt(elements.get(i)[2]);
+                String alcunha = elements.get(i)[3];
+
+                pecas.add(new Piece(idPeca, tipoPeca, equipaPeca, alcunha));
+            }
+            for(int i = 8; i < elements.size(); i++) {
+                for(int j = 0; j < elements.get(i).length; j++){
+                    if(Integer.parseInt(elements.get(i)[j]) != 0) {
+                        for(Piece peca : pecas) {
+                            if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
+                                peca.setPosicaoX(j);
+                                peca.setPosicaoY(i -8);
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+
+        } else if (elements.size() == 20) {
+            boardSize = Integer.parseInt(elements.get(0)[0]);
+            nrPecas = Integer.parseInt(elements.get(1)[0]);
+
+            for(int i = 2; i < elements.size() - 8; i++ ) {
+                int idPeca = Integer.parseInt(elements.get(i)[0]);
+                int tipoPeca = Integer.parseInt(elements.get(i)[1]);
+                int equipaPeca = Integer.parseInt(elements.get(i)[2]);
+                String alcunha = elements.get(i)[3];
+
+                pecas.add(new Piece(idPeca, tipoPeca, equipaPeca, alcunha));
+            }
+            for(int i = 12; i < elements.size(); i++) {
+                for(int j = 0; j < elements.get(i).length; j++){
+                    if(Integer.parseInt(elements.get(i)[j]) != 0) {
+                        for(Piece peca : pecas) {
+                            if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
+                                peca.setPosicaoX(j);
+                                peca.setPosicaoY(i -12);
+                            }
+                        }
+                    }
+                }
+            }
+            return true;
+
+        } else {
+            return false;
+        }
+
+
+
+
+        /*if (lines.size() == 12) {
             boardSize = 4;
             pecas.add(new Piece(1, 0, 0 , "Chefe", 1, 0));
             pecas.add(new Piece(2, 0, 0 , "Selvagem", 3, 0));
@@ -67,7 +130,7 @@ public class GameManager {
 
         } else {
             return false;
-        }
+        } */
     }
 
 

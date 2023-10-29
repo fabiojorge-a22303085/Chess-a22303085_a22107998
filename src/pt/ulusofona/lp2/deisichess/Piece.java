@@ -10,13 +10,11 @@ public class Piece {
     int posicaoY;
     boolean capturado;
 
-    public Piece(int id, int tipoPeca, int equipa, String alcunha, int posicaoX, int posicaoY) {
+    public Piece(int id, int tipoPeca, int equipa, String alcunha) {
         this.id = id;
         this.tipoPeca = tipoPeca;
         this.equipa = equipa;
         this.alcunha = alcunha;
-        this.posicaoX = posicaoX;
-        this.posicaoY = posicaoY;
         this.icone = null;
         this.capturado = false;
     }
@@ -58,4 +56,11 @@ public class Piece {
         return String.valueOf(equipa);
     }
 
+    public void setPosicaoX(int posicaoX) {
+        this.posicaoX = posicaoX;
+    }
+
+    public void setPosicaoY(int posicaoY) {
+        this.posicaoY = posicaoY;
+    }
 }
