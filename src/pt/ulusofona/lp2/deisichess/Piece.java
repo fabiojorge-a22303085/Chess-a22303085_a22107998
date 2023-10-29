@@ -8,6 +8,7 @@ public class Piece {
     String icone;
     int posicaoX;
     int posicaoY;
+    boolean capturado;
 
     public Piece(int id, int tipoPeca, int equipa, String alcunha, int posicaoX, int posicaoY) {
         this.id = id;
@@ -17,6 +18,7 @@ public class Piece {
         this.posicaoX = posicaoX;
         this.posicaoY = posicaoY;
         this.icone = null;
+        this.capturado = false;
     }
     public int getPieceId() {
         return id;
@@ -32,6 +34,9 @@ public class Piece {
     }
     public String getIcone() {
         return icone;
+    }
+    public boolean getCapturado() {
+        return capturado;
     }
 
     public int getPosicaoX() {

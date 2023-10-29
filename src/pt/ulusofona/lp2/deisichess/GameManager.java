@@ -74,6 +74,8 @@ public class GameManager {
     public boolean move(int x0, int y0, int x1, int y1) {
         return true;
     }
+
+
     public String[] getSquareInfo(int x, int y) {
 
         String[] squareInfo = new String[5];
@@ -100,14 +102,20 @@ public class GameManager {
 
     }
     public String[] getPieceInfo (int ID) {
-        String[] pieceInfo = new String[5];
+        String[] pieceInfo = new String[7];
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
                 pieceInfo[0] = piece.getPieceIDAsString();
                 pieceInfo[1] = piece.getTipoPecaAsString();
                 pieceInfo[2] = piece.getEquipaAsString();
                 pieceInfo[3] = piece.getAlcunha();
-                pieceInfo[4] =piece.getIcone();
+                if(piece.getCapturado()) {
+                    pieceInfo[4] = "Capturado";
+                } else {
+                    pieceInfo[4] = "Em Jogo";
+                }
+                pieceInfo[5] =String.valueOf(piece.getPosicaoX());
+                pieceInfo[6] =String.valueOf(piece.getPosicaoY());
             } else {
                 return null;
             }
