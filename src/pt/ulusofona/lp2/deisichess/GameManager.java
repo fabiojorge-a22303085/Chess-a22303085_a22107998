@@ -110,7 +110,7 @@ public class GameManager {
     public String[] getSquareInfo(int x, int y) {
 
         String[] squareInfo = new String[5];
-        boolean temPeca = false;
+
         if (x >= boardSize || x < 0 || y >= boardSize || y < 0) {
             return null;
         }
@@ -121,15 +121,9 @@ public class GameManager {
                 squareInfo[2] = peca.getEquipaAsString();
                 squareInfo[3] = peca.getAlcunha();
                 squareInfo[4] = peca.getIcone();
-                temPeca = true;
-
             }
         }
-        if(temPeca) {
-            return squareInfo;
-        } else {
-            return squareInfo;
-        }
+        return squareInfo;
 
     }
     public String[] getPieceInfo (int ID) {
