@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.deisichess;
 
 public class Piece {
-    int ID;
+    int id;
     int tipoPeca;
     int equipa;
     String alcunha;
@@ -9,8 +9,8 @@ public class Piece {
     int posicaoX;
     int posicaoY;
 
-    public Piece(int ID, int tipoPeca, int equipa, String alcunha, Integer posicaoX, Integer posicaoY) {
-        this.ID = ID;
+    public Piece(int id, int tipoPeca, int equipa, String alcunha, int posicaoX, int posicaoY) {
+        this.id = id;
         this.tipoPeca = tipoPeca;
         this.equipa = equipa;
         this.alcunha = alcunha;
@@ -18,8 +18,8 @@ public class Piece {
         this.posicaoY = posicaoY;
         this.icone = null;
     }
-    public int getPieceID() {
-        return ID;
+    public int getPieceId() {
+        return id;
     }
     public int getTipoPeca() {
         return tipoPeca;
@@ -44,13 +44,13 @@ public class Piece {
         return "(" + String.valueOf(posicaoX) + "," + String.valueOf(posicaoY) + ")";
     }
     public String getPieceIDAsString() {
-        return String.valueOf(ID);
+        return String.valueOf(id);
     }
     public String getTipoPecaAsString() {
-        return String.valueOf(ID);
+        return String.valueOf(tipoPeca);
     }
     public String getEquipaAsString() {
-        return String.valueOf(ID);
+        return String.valueOf(equipa);
     }
 
 }
