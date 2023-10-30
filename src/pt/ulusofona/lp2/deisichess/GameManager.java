@@ -117,7 +117,7 @@ public class GameManager {
 
         String[] squareInfo = new String[5];
 
-        if (x >= boardSize || x < 0 || y >= boardSize || y < 0) {
+        if (x > boardSize -1 || x < 0 || y > boardSize -1 || y < 0) {
             return null;
         }
         for(Piece peca : pecas) {
