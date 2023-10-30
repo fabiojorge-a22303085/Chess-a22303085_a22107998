@@ -28,7 +28,7 @@ public class GameManager {
                 BufferedReader bufferedReader = new BufferedReader(fileReader);
                 String line;
                 while ((line = bufferedReader.readLine()) != null) {
-                    String[] lineElements = line.split(":"); // Substitua a vírgula pelo delimitador correto
+                    String[] lineElements = line.split(":");
 
                     // Adicionar os elementos da linha ao ArrayList de arrays de strings
                     elements.add(lineElements);
@@ -116,29 +116,39 @@ public class GameManager {
     public String[] getSquareInfo(int x, int y) {
 
         String[] squareInfo = new String[5];
+        String [] squareInfoVazio = new String[0];
+        boolean temPeca = false;
 
         if (x > boardSize -1 || x < 0 || y > boardSize -1 || y < 0) {
             return null;
         }
         for(Piece peca : pecas) {
             if (x == peca.getPosicaoX() && y == peca.getPosicaoY()) {
-                squareInfo[0] = peca.getPieceIDAsString();
-                squareInfo[1] = peca.getTipoPecaAsString();
-                squareInfo[2] = peca.getEquipaAsString();
+                squareInfo[0] = String.valueOf(peca.getPieceId());
+                squareInfo[1] = String.valueOf(peca.getTipoPeca());
+                squareInfo[2] = String.valueOf(peca.getEquipa());
                 squareInfo[3] = peca.getAlcunha();
                 squareInfo[4] = peca.getIcone();
+                temPeca = true;
             }
+            System.out.println(squareInfo[0]);
         }
-        return squareInfo;
+        if(temPeca) {
+            return squareInfo;
+        } else {
+            return squareInfoVazio;
+        }
+
+
 
     }
     public String[] getPieceInfo (int ID) {
         String[] pieceInfo = new String[7];
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
-                pieceInfo[0] = piece.getPieceIDAsString();
-                pieceInfo[1] = piece.getTipoPecaAsString();
-                pieceInfo[2] = piece.getEquipaAsString();
+                pieceInfo[0] = String.valueOf(piece.getPieceId());
+                pieceInfo[1] = String.valueOf(piece.getTipoPeca());
+                pieceInfo[2] = String.valueOf(piece.getEquipa());
                 pieceInfo[3] = piece.getAlcunha();
                 if(piece.getCapturado()) {
                     pieceInfo[4] = "Capturado";
@@ -159,8 +169,8 @@ public class GameManager {
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
-                pieceInfoAsString += piece.getPieceIDAsString() + "|" + piece.getTipoPecaAsString() + "|" +
-                        piece.getEquipaAsString() + "|" + piece.getAlcunha() + "@" + piece.getPosicaoXY();
+                pieceInfoAsString += String.valueOf(piece.getPieceId()) + "|" + String.valueOf(piece.getTipoPeca()) + "|" +
+                        String.valueOf(piece.getEquipa()) + "|" + piece.getAlcunha() + "@" + piece.getPosicaoXY();
             } else {
                 return null;
             }

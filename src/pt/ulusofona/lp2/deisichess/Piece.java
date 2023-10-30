@@ -15,7 +15,11 @@ public class Piece {
         this.tipoPeca = tipoPeca;
         this.equipa = equipa;
         this.alcunha = alcunha;
-        this.icone = null;
+        if(this.equipa == 0) {
+            this.icone = "crazy_emoji_black.png";
+        } else {
+            this.icone = "crazy_emoji_white.png";
+        }
         this.capturado = false;
     }
     public int getPieceId() {
@@ -46,16 +50,6 @@ public class Piece {
     public String getPosicaoXY() {
         return "(" + String.valueOf(posicaoX) + "," + String.valueOf(posicaoY) + ")";
     }
-    public String getPieceIDAsString() {
-        return String.valueOf(id);
-    }
-    public String getTipoPecaAsString() {
-        return String.valueOf(tipoPeca);
-    }
-    public String getEquipaAsString() {
-        return String.valueOf(equipa);
-    }
-
     public void setPosicaoX(int posicaoX) {
         this.posicaoX = posicaoX;
     }
