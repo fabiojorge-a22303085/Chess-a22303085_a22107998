@@ -50,6 +50,21 @@ public class Piece {
     public String getPosicaoXY() {
         return "(" + String.valueOf(posicaoX) + "," + String.valueOf(posicaoY) + ")";
     }
+
+    @Override
+    public String toString() {
+        return "Piece{" +
+                "id=" + id +
+                ", tipoPeca=" + tipoPeca +
+                ", equipa=" + equipa +
+                ", alcunha='" + alcunha + '\'' +
+                ", icone='" + icone + '\'' +
+                ", posicaoX=" + posicaoX +
+                ", posicaoY=" + posicaoY +
+                ", capturado=" + capturado +
+                '}';
+    }
+
     public void setPosicaoX(int posicaoX) {
         this.posicaoX = posicaoX;
     }
