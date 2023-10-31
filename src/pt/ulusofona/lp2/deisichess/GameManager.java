@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisichess;
 import java.io.*;
 import java.io.FileReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javax.swing.*;
 
@@ -158,33 +159,36 @@ public class GameManager {
             }
         }
         if(temPeca) {
-            System.out.println(squareInfo[0]);
             return squareInfo;
         } else {
-            System.out.println(squareInfo[0]);
             return squareInfoVazio;
         }
     }
     public String[] getPieceInfo (int ID) {
         String[] pieceInfo = new String[7];
+        String[] pieceInfoVazio = new String[0];
+        boolean temPeca = false;
         for (Piece piece : pecas) {
-            if(piece.getPieceId() == ID) {
+            if (piece.getPieceId() == ID) {
                 pieceInfo[0] = String.valueOf(piece.getPieceId());
                 pieceInfo[1] = String.valueOf(piece.getTipoPeca());
                 pieceInfo[2] = String.valueOf(piece.getEquipa());
                 pieceInfo[3] = piece.getAlcunha();
-                if(piece.getCapturado()) {
+                if (piece.getCapturado()) {
                     pieceInfo[4] = "Capturado";
                 } else {
                     pieceInfo[4] = "Em Jogo";
                 }
-                pieceInfo[5] =String.valueOf(piece.getPosicaoX());
-                pieceInfo[6] =String.valueOf(piece.getPosicaoY());
-            } else {
-                return null;
+                pieceInfo[5] = String.valueOf(piece.getPosicaoX());
+                pieceInfo[6] = String.valueOf(piece.getPosicaoY());
+                temPeca = true;
             }
         }
-        return pieceInfo;
+        if(temPeca) {
+            return pieceInfo;
+        } else {
+            return pieceInfoVazio;
+        }
 
     }
 

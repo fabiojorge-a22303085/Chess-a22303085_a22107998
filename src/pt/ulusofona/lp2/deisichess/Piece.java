@@ -17,7 +17,7 @@ public class Piece {
         this.alcunha = alcunha;
         if(this.equipa == 0) {
             this.icone = "crazy_emoji_black.png";
-        } else {
+        } else if(this.equipa == 1) {
             this.icone = "crazy_emoji_white.png";
         }
         this.capturado = false;
