@@ -143,7 +143,6 @@ public class GameManager {
 
         String[] squareInfo = new String[5];
         String [] squareInfoVazio = new String[0];
-        boolean temPeca = false;
 
         if (x > boardSize -1 || x < 0 || y > boardSize -1 || y < 0) {
             return null;
@@ -155,19 +154,15 @@ public class GameManager {
                 squareInfo[2] = String.valueOf(peca.getEquipa());
                 squareInfo[3] = peca.getAlcunha();
                 squareInfo[4] = peca.getIcone();
-                temPeca = true;
+                return squareInfo;
             }
         }
-        if(temPeca) {
-            return squareInfo;
-        } else {
-            return squareInfoVazio;
-        }
+        return squareInfoVazio;
     }
     public String[] getPieceInfo (int ID) {
         String[] pieceInfo = new String[7];
         String[] pieceInfoVazio = new String[0];
-        boolean temPeca = false;
+
         for (Piece piece : pecas) {
             if (piece.getPieceId() == ID) {
                 pieceInfo[0] = String.valueOf(piece.getPieceId());
@@ -175,21 +170,16 @@ public class GameManager {
                 pieceInfo[2] = String.valueOf(piece.getEquipa());
                 pieceInfo[3] = piece.getAlcunha();
                 if (piece.getCapturado()) {
-                    pieceInfo[4] = "Capturado";
+                    pieceInfo[4] = "capturado";
                 } else {
-                    pieceInfo[4] = "Em Jogo";
+                    pieceInfo[4] = "em jogo";
                 }
                 pieceInfo[5] = String.valueOf(piece.getPosicaoX());
                 pieceInfo[6] = String.valueOf(piece.getPosicaoY());
-                temPeca = true;
+                return pieceInfo;
             }
         }
-        if(temPeca) {
-            return pieceInfo;
-        } else {
-            return pieceInfoVazio;
-        }
-
+        return pieceInfoVazio;
     }
 
     public String getPieceInfoAsString(int ID) {
