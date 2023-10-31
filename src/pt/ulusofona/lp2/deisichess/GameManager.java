@@ -9,7 +9,7 @@ public class GameManager {
 
     int boardSize;
     ArrayList<Piece> pecas;
-    int rodada = 1;
+    int rodada = 0;
     int nrPecas;
     int currentTeam;
 
