@@ -118,40 +118,41 @@ public class GameManager {
 
     public boolean move(int x0, int y0, int x1, int y1) {
 
-        if(x1 < 0 || y1 < 0 || x1 > boardSize -1 || y1 > boardSize -1) {
+        if (x1 < 0 || y1 < 0 || x1 > boardSize - 1 || y1 > boardSize - 1) {
             return false;
-        } else if(x0 < 0 || y0 < 0 || x0 > boardSize -1 || y0 > boardSize -1) {
+        } else if (x0 < 0 || y0 < 0 || x0 > boardSize - 1 || y0 > boardSize - 1) {
             return false;
-        } else if(x0 == x1 && y0 == y1) {
+        } else if (x0 == x1 && y0 == y1) {
             return false;
-        } else if(x0 -1 != x1 && x0 != x1 && x0 + 1 != x1) {
+        } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
             return false;
         } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
             return false;
         } else {
-            for(Piece peca : pecas) {
-                if(x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
-                    if(rodada % 2 == 0) {
-                        if(peca.getEquipa() == 0) {
+            for (Piece peca : pecas) {
+                if (x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
+                    if (rodada % 2 == 0) {
+                        if (peca.getEquipa() == 0) {
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             rodada++;
+                            return true;
                         } else {
                             return false;
                         }
                     } else {
-                        if(peca.getEquipa() == 1) {
+                        if (peca.getEquipa() == 1) {
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             rodada++;
+                            return true;
                         } else {
                             return false;
                         }
                     }
-
                 }
             }
-            return true;
+            return false;
         }
     }
 
