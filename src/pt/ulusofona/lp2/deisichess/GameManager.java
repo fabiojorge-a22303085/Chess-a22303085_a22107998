@@ -76,6 +76,7 @@ public class GameManager {
                 }
             }
 
+
             return true;
 
         } else if (elements.size() == 20) {
@@ -97,6 +98,7 @@ public class GameManager {
                             if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
                                 peca.setPosicaoX(j);
                                 peca.setPosicaoY(i - 12);
+
                             }
                         }
                     }
@@ -140,6 +142,7 @@ public class GameManager {
 
 
     public String[] getSquareInfo(int x, int y) {
+        System.out.println("squareInfo");
 
         String[] squareInfo = new String[5];
         String [] squareInfoVazio = new String[0];
@@ -152,8 +155,9 @@ public class GameManager {
                 squareInfo[0] = String.valueOf(peca.getPieceId());
                 squareInfo[1] = String.valueOf(peca.getTipoPeca());
                 squareInfo[2] = String.valueOf(peca.getEquipa());
-                squareInfo[3] = peca.getAlcunha();
-                squareInfo[4] = peca.getIcone();
+                squareInfo[3] = String.valueOf(peca.getAlcunha());
+                squareInfo[4] = String.valueOf(peca.getIcone());
+                System.out.println(squareInfo[0]);
                 return squareInfo;
             }
         }
@@ -183,6 +187,7 @@ public class GameManager {
     }
 
     public String getPieceInfoAsString(int ID) {
+
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
