@@ -72,4 +72,8 @@ public class Piece {
     public void setPosicaoY(int posicaoY) {
         this.posicaoY = posicaoY;
     }
+
+    public void setCapturado(boolean capturado) {
+        this.capturado = capturado;
+    }
 }

@@ -133,6 +133,15 @@ public class GameManager {
                 if (x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
                     if (rodada % 2 == 0) {
                         if (peca.getEquipa() == 0) {
+                            for(Piece pecaEquipaContraia : pecas) {
+                                if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
+                                    pecas.remove(pecaEquipaContraia);
+                                    peca.setPosicaoX(x1);
+                                    peca.setPosicaoY(y1);
+                                    rodada++;
+                                    return true;
+                                }
+                            }
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             rodada++;
@@ -142,6 +151,15 @@ public class GameManager {
                         }
                     } else {
                         if (peca.getEquipa() == 1) {
+                            for(Piece pecaEquipaContraia : pecas) {
+                                if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
+                                    pecas.remove(pecaEquipaContraia);
+                                    peca.setPosicaoX(x1);
+                                    peca.setPosicaoY(y1);
+                                    rodada++;
+                                    return true;
+                                }
+                            }
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             rodada++;
