@@ -241,8 +241,27 @@ public class GameManager {
 
     }
     public boolean gameOver() {
-        return true;
-
+        ArrayList<Piece> equipaPreta = new ArrayList<>();
+        ArrayList<Piece> equipaBranca = new ArrayList<>();
+        for(Piece peca : pecas) {
+            if(peca.getEquipa() == 0) {
+                equipaPreta.add(peca);
+            } else if (peca.getEquipa() == 1) {
+                equipaBranca.add(peca);
+            }
+        }
+        if(pecas.size() == 6 || pecas.size() == 10) {
+            if(rodada == 9) {
+                return true;
+            }
+        } else if(equipaBranca.size() == equipaPreta.size()) {
+            return true;
+        } else if (equipaPreta.size() > 0 && equipaBranca.size() == 0) {
+            return true;
+        } else if (equipaBranca.size() > 0 && equipaPreta.size() == 0) {
+            return true;
+        }
+        return false;
     }
     public ArrayList<String> getGameResults() {
         return null;
