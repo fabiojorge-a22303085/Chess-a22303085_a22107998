@@ -227,8 +227,6 @@ public class GameManager {
             if(piece.getPieceId() == ID) {
                 pieceInfoAsString += String.valueOf(piece.getPieceId()) + "|" + String.valueOf(piece.getTipoPeca()) + "|" +
                         String.valueOf(piece.getEquipa()) + "|" + piece.getAlcunha() + "@" + piece.getPosicaoXY();
-            } else {
-                return null;
             }
         }
         return pieceInfoAsString;
