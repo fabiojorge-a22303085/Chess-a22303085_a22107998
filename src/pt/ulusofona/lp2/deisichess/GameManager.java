@@ -11,7 +11,8 @@ public class GameManager {
     ArrayList<Piece> pecas;
     int rodada = 0;
     int nrPecas;
-    int currentTeam;
+    int capturas = 0;
+    int nrJogadasInvalidas = 0;
 
     public GameManager() {
     }
@@ -119,14 +120,19 @@ public class GameManager {
     public boolean move(int x0, int y0, int x1, int y1) {
 
         if (x1 < 0 || y1 < 0 || x1 > boardSize - 1 || y1 > boardSize - 1) {
+            nrJogadasInvalidas++;
             return false;
         } else if (x0 < 0 || y0 < 0 || x0 > boardSize - 1 || y0 > boardSize - 1) {
+            nrJogadasInvalidas++;
             return false;
         } else if (x0 == x1 && y0 == y1) {
+            nrJogadasInvalidas++;
             return false;
         } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
+            nrJogadasInvalidas++;
             return false;
         } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
+            nrJogadasInvalidas++;
             return false;
         } else {
             for (Piece peca : pecas) {
@@ -136,6 +142,7 @@ public class GameManager {
                             for(Piece pecaEquipaContraia : pecas) {
                                 if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
                                     pecas.remove(pecaEquipaContraia);
+                                    capturas++;
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
                                     rodada++;
@@ -147,6 +154,7 @@ public class GameManager {
                             rodada++;
                             return true;
                         } else {
+                            nrJogadasInvalidas++;
                             return false;
                         }
                     } else {
@@ -154,6 +162,7 @@ public class GameManager {
                             for(Piece pecaEquipaContraia : pecas) {
                                 if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
                                     pecas.remove(pecaEquipaContraia);
+                                    capturas++;
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
                                     rodada++;
@@ -165,11 +174,13 @@ public class GameManager {
                             rodada++;
                             return true;
                         } else {
+                            nrJogadasInvalidas++;
                             return false;
                         }
                     }
                 }
             }
+            nrJogadasInvalidas++;
             return false;
         }
     }
@@ -225,8 +236,8 @@ public class GameManager {
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
-                pieceInfoAsString += String.valueOf(piece.getPieceId()) + "|" + String.valueOf(piece.getTipoPeca()) + "|" +
-                        String.valueOf(piece.getEquipa()) + "|" + piece.getAlcunha() + "@" + piece.getPosicaoXY();
+                pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
+                        String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
             }
         }
         return pieceInfoAsString;
@@ -254,7 +265,7 @@ public class GameManager {
             if(rodada == 9) {
                 return true;
             }
-        } else if(equipaBranca.size() == equipaPreta.size()) {
+        } else if(equipaBranca.size() == 1 && equipaPreta.size() == 1) {
             return true;
         } else if (equipaPreta.size() > 0 && equipaBranca.size() == 0) {
             return true;
