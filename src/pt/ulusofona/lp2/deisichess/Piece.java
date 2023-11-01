@@ -48,7 +48,7 @@ public class Piece {
         return posicaoY;
     }
     public String getPosicaoXY() {
-        return "(" + String.valueOf(posicaoX) + "," + String.valueOf(posicaoY) + ")";
+        return "(" + String.valueOf(posicaoX) + ", " + String.valueOf(posicaoY) + ")";
     }
 
     @Override
