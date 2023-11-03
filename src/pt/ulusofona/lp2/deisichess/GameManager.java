@@ -209,14 +209,26 @@ public class GameManager {
 
         for (Piece piece : pecas) {
             if (piece.getPieceId() == ID) {
-                pieceInfo[0] = String.valueOf(piece.getPieceId());
-                pieceInfo[1] = String.valueOf(piece.getTipoPeca());
-                pieceInfo[2] = String.valueOf(piece.getEquipa());
-                pieceInfo[3] = piece.getAlcunha();
-                pieceInfo[4] = piece.getEstado();
-                pieceInfo[5] = String.valueOf(piece.getPosicaoX());
-                pieceInfo[6] = String.valueOf(piece.getPosicaoY());
-                return pieceInfo;
+                if(piece.getEstado().equals("em jogo")) {
+                    pieceInfo[0] = String.valueOf(piece.getPieceId());
+                    pieceInfo[1] = String.valueOf(piece.getTipoPeca());
+                    pieceInfo[2] = String.valueOf(piece.getEquipa());
+                    pieceInfo[3] = piece.getAlcunha();
+                    pieceInfo[4] = piece.getEstado();
+                    pieceInfo[5] = String.valueOf(piece.getPosicaoX());
+                    pieceInfo[6] = String.valueOf(piece.getPosicaoY());
+                    return pieceInfo;
+                } else if (piece.getEstado().equals("capturado")) {
+                    pieceInfo[0] = String.valueOf(piece.getPieceId());
+                    pieceInfo[1] = String.valueOf(piece.getTipoPeca());
+                    pieceInfo[2] = String.valueOf(piece.getEquipa());
+                    pieceInfo[3] = piece.getAlcunha();
+                    pieceInfo[4] = piece.getEstado();
+                    pieceInfo[5] = "";
+                    pieceInfo[6] = "";
+                }
+
+
             }
         }
         return pieceInfoVazio;
@@ -227,8 +239,13 @@ public class GameManager {
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if(piece.getPieceId() == ID) {
-                pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
-                        String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                if(piece.getEstado().equals("em jogo")) {
+                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
+                            String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                } else if (piece.getEstado().equals("capturado")) {
+                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
+                            String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                }
             }
         }
         return pieceInfoAsString;
