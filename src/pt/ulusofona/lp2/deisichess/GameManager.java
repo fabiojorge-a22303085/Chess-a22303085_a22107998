@@ -7,193 +7,152 @@ import javax.swing.*;
 
 public class GameManager {
 
-    int boardSize;
     ArrayList<Piece> pecas;
-    int rodada = 0;
+    Board board = new Board(1);
     int nrPecas;
-    int nrCapturrasPretas = 0;
-    int nrCapturasBrancas = 0;
-    int nrJogadasInvPretas = 0;
-    int nrJogadasInvBrancas = 0;
+    Stats stats = new Stats();
+
+
 
     public GameManager() {
     }
 
-    public int getBoardSize() {
-        return boardSize;
-    }
-
     public boolean loadGame(File file) {
-        ArrayList<String[]> elements = new ArrayList<>();
+        pecas = new ArrayList<>();
+
+
 
         try {
             if (file.exists()) {
-                FileReader fileReader = new FileReader(file);
+                BufferedReader br = new BufferedReader(new FileReader(file));
 
-                BufferedReader bufferedReader = new BufferedReader(fileReader);
-                String line;
-                while ((line = bufferedReader.readLine()) != null) {
-                    String[] lineElements = line.split(":");
+                int boardSize = Integer.parseInt(br.readLine());
 
-                    // Adicionar os elementos da linha ao ArrayList de arrays de strings
-                    elements.add(lineElements);
+                board.setBoardSize(boardSize);
+                nrPecas = Integer.parseInt(br.readLine());
+
+
+                for(int i = 0; i < nrPecas; i++) {
+                    String line = br.readLine();
+                    String[] dados = line.split(":");
+
+                    Piece peca = new Piece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
+                    pecas.add(peca);
+
+                    if(peca.getEquipa() == 0) {
+                        stats.incrementaPreta();
+                    } else if (peca.getEquipa() == 1) {
+                        stats.incrementaBranca();
+                    }
+                    //*
                 }
-                bufferedReader.close();
-                fileReader.close();
+                for(int i = 0; i < board.getBoardSize(); i++) {
+                    String line = br.readLine();
+                    String[] dados = line.split(":");
+                    for(int j = 0; i < board.getBoardSize(); j++) {
+                        for(Piece peca : pecas) {
+                            if(Integer.parseInt(dados[0]) == peca.getPieceId()) {
+                                peca.setPosicaoX(j);
+                                peca.setPosicaoY(i);
+                                peca.setEmJogo();
+                            }
+                        }
+                    }
+                }
+                for(Piece peca : pecas) {
+                    if(peca.getEstado().equals("capturado")) {
+                        if(peca.getEquipa() == 0) {
+                            stats.decrementaPreta();
+                        } else if (peca.getEquipa() == 1) {
+                            stats.decrementaBranca();
+                        }
+                    }
+                }
             } else {
                 return false;
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        for(int i = 0; i < elements.size(); i++) {
-            for(int j = 0; j < elements.get(i).length; j++) {
-                if(elements.get(i)[j] == null) {
-                    return false;
-                }
-            }
-        }
-
-        pecas = new ArrayList<>();
-        if(elements.size() == 12) {
-            boardSize = Integer.parseInt(elements.get(0)[0]);
-            nrPecas = Integer.parseInt(elements.get(1)[0]);
-
-            for(int i = 2; i < elements.size() - 4; i++ ) {
-                int idPeca = Integer.parseInt(elements.get(i)[0]);
-                int tipoPeca = Integer.parseInt(elements.get(i)[1]);
-                int equipaPeca = Integer.parseInt(elements.get(i)[2]);
-                String alcunha = elements.get(i)[3];
-
-                pecas.add(new Piece(idPeca, tipoPeca, equipaPeca, alcunha));
-            }
-            for(int i = 8; i < elements.size(); i++) {
-                for(int j = 0; j < elements.get(i).length; j++){
-                    if(Integer.parseInt(elements.get(i)[j]) != 0) {
-                        for(Piece peca : pecas) {
-                            if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
-                                peca.setPosicaoX(j);
-                                peca.setPosicaoY(i - 8);
-                            }
-                        }
-                    }
-                }
-            }
-
-
-            return true;
-
-        } else if (elements.size() == 20) {
-            boardSize = Integer.parseInt(elements.get(0)[0]);
-            nrPecas = Integer.parseInt(elements.get(1)[0]);
-
-            for(int i = 2; i < elements.size() - 8; i++ ) {
-                int idPeca = Integer.parseInt(elements.get(i)[0]);
-                int tipoPeca = Integer.parseInt(elements.get(i)[1]);
-                int equipaPeca = Integer.parseInt(elements.get(i)[2]);
-                String alcunha = elements.get(i)[3];
-
-                pecas.add(new Piece(idPeca, tipoPeca, equipaPeca, alcunha));
-            }
-            for(int i = 12; i < elements.size(); i++) {
-                for(int j = 0; j < elements.get(i).length; j++){
-                    if(Integer.parseInt(elements.get(i)[j]) != 0) {
-                        for(Piece peca : pecas) {
-                            if(Integer.parseInt(elements.get(i)[j]) == peca.getPieceId()) {
-                                peca.setPosicaoX(j);
-                                peca.setPosicaoY(i - 12);
-
-                            }
-                        }
-                    }
-                }
-            }
-
-            return true;
-
-
-        } else {
-            return false;
-        }
-
+        return true;
     }
 
 
     public boolean move(int x0, int y0, int x1, int y1) {
         for (Piece peca : pecas) {
             if (x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
-                if (rodada % 2 == 0) {
+                if (stats.getRodada() % 2 == 0) {
                     if (peca.getEquipa() == 0) {
-                        if (x1 < 0 || y1 < 0 || x1 > boardSize - 1 || y1 > boardSize - 1) {
-                            nrJogadasInvPretas++;
+                        if (x1 < 0 || y1 < 0 || x1 > board.getBoardSize()- 1 || y1 > board.getBoardSize() - 1) {
+                            //nrJogadasInvPretas++;
                             return false;
-                        } else if (x0 < 0 || y0 < 0 || x0 > boardSize - 1 || y0 > boardSize - 1) {
-                            nrJogadasInvPretas++;
+                        } else if (x0 < 0 || y0 < 0 || x0 > board.getBoardSize()- 1 || y0 > board.getBoardSize() - 1) {
+                            //nrJogadasInvPretas++;
                             return false;
                         } else if (x0 == x1 && y0 == y1) {
-                            nrJogadasInvPretas++;
+                            //nrJogadasInvPretas++;
                             return false;
                         } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
-                            nrJogadasInvPretas++;
+                            //nrJogadasInvPretas++;
                             return false;
                         } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
-                            nrJogadasInvPretas++;
+                            //nrJogadasInvPretas++;
                             return false;
                         } else {
                             for (Piece pecaEquipaContraia : pecas) {
                                 if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
                                     pecas.remove(pecaEquipaContraia);
-                                    nrCapturrasPretas++;
+                                    //nrCapturrasPretas++;
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
-                                    rodada++;
+                                    //rodada++;
                                     return true;
                                 }
                             }
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
-                            rodada++;
+                            //rodada++;
                             return true;
                         }
                     } else {
-                        nrJogadasInvPretas++;
+                        //nrJogadasInvPretas++;
                         return false;
                     }
                 } else {
                     if (peca.getEquipa() == 1) {
-                        if (x1 < 0 || y1 < 0 || x1 > boardSize - 1 || y1 > boardSize - 1) {
-                            nrJogadasInvBrancas++;
+                        if (x1 < 0 || y1 < 0 || x1 > board.getBoardSize() - 1 || y1 > board.getBoardSize() - 1) {
+                            //nrJogadasInvBrancas++;
                             return false;
-                        } else if (x0 < 0 || y0 < 0 || x0 > boardSize - 1 || y0 > boardSize - 1) {
-                            nrJogadasInvBrancas++;
+                        } else if (x0 < 0 || y0 < 0 || x0 > board.getBoardSize() - 1 || y0 > board.getBoardSize() - 1) {
+                            //nrJogadasInvBrancas++;
                             return false;
                         } else if (x0 == x1 && y0 == y1) {
-                            nrJogadasInvBrancas++;
+                            //nrJogadasInvBrancas++;
                             return false;
                         } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
-                            nrJogadasInvBrancas++;
+                            //nrJogadasInvBrancas++;
                             return false;
                         } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
-                            nrJogadasInvBrancas++;
+                            //nrJogadasInvBrancas++;
                             return false;
                         } else {
                             for (Piece pecaEquipaContraia : pecas) {
                                 if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
                                     pecas.remove(pecaEquipaContraia);
-                                    nrCapturasBrancas++;
+                                    //nrCapturasBrancas++;
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
-                                    rodada++;
+                                    //rodada++;
                                     return true;
                                 }
                             }
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
-                            rodada++;
+                            //rodada++;
                             return true;
                         }
                     } else {
-                        nrJogadasInvBrancas++;
+                        //nrJogadasInvBrancas++;
                         return false;
                     }
                 }
@@ -202,79 +161,14 @@ public class GameManager {
         return false;
     }
 
-        /*if (x1 < 0 || y1 < 0 || x1 > boardSize - 1 || y1 > boardSize - 1) {
-            nrJogadasInvalidas++;
-            return false;
-        } else if (x0 < 0 || y0 < 0 || x0 > boardSize - 1 || y0 > boardSize - 1) {
-            nrJogadasInvalidas++;
-            return false;
-        } else if (x0 == x1 && y0 == y1) {
-            nrJogadasInvalidas++;
-            return false;
-        } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
-            nrJogadasInvalidas++;
-            return false;
-        } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
-            nrJogadasInvalidas++;
-            return false;
-        } else {
-            for (Piece peca : pecas) {
-                if (x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
-                    if (rodada % 2 == 0) {
-                        if (peca.getEquipa() == 0) {
-                            for(Piece pecaEquipaContraia : pecas) {
-                                if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecas.remove(pecaEquipaContraia);
-                                    capturas++;
-                                    peca.setPosicaoX(x1);
-                                    peca.setPosicaoY(y1);
-                                    rodada++;
-                                    return true;
-                                }
-                            }
-                            peca.setPosicaoX(x1);
-                            peca.setPosicaoY(y1);
-                            rodada++;
-                            return true;
-                        } else {
-                            nrJogadasInvalidas++;
-                            return false;
-                        }
-                    } else {
-                        if (peca.getEquipa() == 1) {
-                            for(Piece pecaEquipaContraia : pecas) {
-                                if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecas.remove(pecaEquipaContraia);
-                                    capturas++;
-                                    peca.setPosicaoX(x1);
-                                    peca.setPosicaoY(y1);
-                                    rodada++;
-                                    return true;
-                                }
-                            }
-                            peca.setPosicaoX(x1);
-                            peca.setPosicaoY(y1);
-                            rodada++;
-                            return true;
-                        } else {
-                            nrJogadasInvalidas++;
-                            return false;
-                        }
-                    }
-                }
-            }
-            nrJogadasInvalidas++;
-            return false;
-        }*/
 
 
     public String[] getSquareInfo(int x, int y) {
-        System.out.println("squareInfo");
 
         String[] squareInfo = new String[5];
         String [] squareInfoVazio = new String[0];
 
-        if (x > boardSize -1 || x < 0 || y > boardSize -1 || y < 0) {
+        if (x > board.getBoardSize() -1 || x < 0 || y > board.getBoardSize() -1 || y < 0) {
             return null;
         }
         for(Piece peca : pecas) {
@@ -284,7 +178,6 @@ public class GameManager {
                 squareInfo[2] = String.valueOf(peca.getEquipa());
                 squareInfo[3] = String.valueOf(peca.getAlcunha());
                 squareInfo[4] = String.valueOf(peca.getIcone());
-                System.out.println(squareInfo[0]);
                 return squareInfo;
             }
         }
@@ -300,11 +193,7 @@ public class GameManager {
                 pieceInfo[1] = String.valueOf(piece.getTipoPeca());
                 pieceInfo[2] = String.valueOf(piece.getEquipa());
                 pieceInfo[3] = piece.getAlcunha();
-                if (piece.getCapturado()) {
-                    pieceInfo[4] = "capturado";
-                } else {
-                    pieceInfo[4] = "em jogo";
-                }
+                pieceInfo[4] = piece.getEstado();
                 pieceInfo[5] = String.valueOf(piece.getPosicaoX());
                 pieceInfo[6] = String.valueOf(piece.getPosicaoY());
                 return pieceInfo;
@@ -325,7 +214,7 @@ public class GameManager {
         return pieceInfoAsString;
     }
     public int getCurrentTeamID() {
-        if(rodada % 2 == 0) {
+        if(stats.getRodada() % 2 == 0) {
             return 0;
         } else {
             return 1;
@@ -334,27 +223,7 @@ public class GameManager {
 
     }
     public boolean gameOver() {
-        ArrayList<Piece> equipaPreta = new ArrayList<>();
-        ArrayList<Piece> equipaBranca = new ArrayList<>();
-        for(Piece peca : pecas) {
-            if(peca.getEquipa() == 0) {
-                equipaPreta.add(peca);
-            } else if (peca.getEquipa() == 1) {
-                equipaBranca.add(peca);
-            }
-        }
-        if(pecas.size() == 6 || pecas.size() == 10) {
-            if(rodada == 9) {
-                return true;
-            }
-        } else if(equipaBranca.size() == 1 && equipaPreta.size() == 1) {
-            return true;
-        } else if (equipaPreta.size() > 0 && equipaBranca.size() == 0) {
-            return true;
-        } else if (equipaBranca.size() > 0 && equipaPreta.size() == 0) {
-            return true;
-        }
-        return false;
+        return true;
     }
     public ArrayList<String> getGameResults() {
         return null;

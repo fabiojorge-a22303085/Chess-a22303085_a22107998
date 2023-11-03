@@ -8,7 +8,7 @@ public class Piece {
     String icone;
     int posicaoX;
     int posicaoY;
-    boolean capturado;
+    String estado;
 
     public Piece(int id, int tipoPeca, int equipa, String alcunha) {
         this.id = id;
@@ -20,8 +20,11 @@ public class Piece {
         } else if(this.equipa == 1) {
             this.icone = "crazy_emoji_white.png";
         }
-        this.capturado = false;
+        this.estado = "capturado";
     }
+
+
+
     public int getPieceId() {
         return id;
     }
@@ -37,8 +40,8 @@ public class Piece {
     public String getIcone() {
         return icone;
     }
-    public boolean getCapturado() {
-        return capturado;
+    public String getEstado() {
+        return estado;
     }
 
     public int getPosicaoX() {
@@ -51,19 +54,6 @@ public class Piece {
         return "(" + String.valueOf(posicaoX) + ", " + String.valueOf(posicaoY) + ")";
     }
 
-    @Override
-    public String toString() {
-        return "Piece{" +
-                "id=" + id +
-                ", tipoPeca=" + tipoPeca +
-                ", equipa=" + equipa +
-                ", alcunha='" + alcunha + '\'' +
-                ", icone='" + icone + '\'' +
-                ", posicaoX=" + posicaoX +
-                ", posicaoY=" + posicaoY +
-                ", capturado=" + capturado +
-                '}';
-    }
 
     public void setPosicaoX(int posicaoX) {
         this.posicaoX = posicaoX;
@@ -73,7 +63,7 @@ public class Piece {
         this.posicaoY = posicaoY;
     }
 
-    public void setCapturado(boolean capturado) {
-        this.capturado = capturado;
+    public void setEmJogo() {
+        this.estado = "em jogo";
     }
 }
