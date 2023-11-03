@@ -55,7 +55,7 @@ public class GameManager {
                     String[] dados = line.split(":");
                     for(int j = 0; j < board.getBoardSize(); j++) {
                         for(Piece peca : pecas) {
-                            if(Integer.parseInt(dados[0]) == peca.getPieceId()) {
+                            if(Integer.parseInt(dados[j]) == peca.getPieceId()) {
                                 peca.setPosicaoX(j);
                                 peca.setPosicaoY(i);
                                 peca.setEmJogo();
