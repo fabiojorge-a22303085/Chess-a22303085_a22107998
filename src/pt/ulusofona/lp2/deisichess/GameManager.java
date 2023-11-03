@@ -17,6 +17,10 @@ public class GameManager {
     public GameManager() {
     }
 
+    public int getBoardSize() {
+        return board.getBoardSize();
+    }
+
     public boolean loadGame(File file) {
         pecas = new ArrayList<>();
 
