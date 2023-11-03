@@ -1,19 +1,19 @@
 package pt.ulusofona.lp2.deisichess;
 
 public class Stats {
-    int nrCapturrasPretas = 0;
+    int nrCapturasPretas = 0;
     int nrCapturasBrancas = 0;
     int nrJogadasInvPretas = 0;
     int nrJogadasInvBrancas = 0;
-    int rodada = 0;
+    int rodada = 1;
     int nrPecasPretas;
     int nrPecasBrancas;
 
     public Stats() {
     }
 
-    public int getNrCapturrasPretas() {
-        return nrCapturrasPretas;
+    public int getNrCapturasPretas() {
+        return nrCapturasPretas;
     }
 
     public int getNrCapturasBrancas() {
@@ -53,31 +53,27 @@ public class Stats {
         nrPecasPretas--;
     }
 
-    public void setNrCapturrasPretas(int nrCapturrasPretas) {
-        this.nrCapturrasPretas = nrCapturrasPretas;
-    }
-
-    public void setNrCapturasBrancas(int nrCapturasBrancas) {
-        this.nrCapturasBrancas = nrCapturasBrancas;
-    }
-
-    public void setNrJogadasInvPretas(int nrJogadasInvPretas) {
-        this.nrJogadasInvPretas = nrJogadasInvPretas;
-    }
-
-    public void setNrJogadasInvBrancas(int nrJogadasInvBrancas) {
-        this.nrJogadasInvBrancas = nrJogadasInvBrancas;
-    }
-
-    public void setRodada(int rodada) {
-        this.rodada = rodada;
-    }
-
     public void setNrPecasPretas(int nrPecasPretas) {
         this.nrPecasPretas = nrPecasPretas;
     }
 
     public void setNrPecasBrancas(int nrPecasBrancas) {
         this.nrPecasBrancas = nrPecasBrancas;
+    }
+    public void capturaPretas() {
+        nrCapturasPretas++;
+
+    }
+    public void capturasBrancas() {
+        nrCapturasBrancas++;
+    }
+    public void jogadasInvalidasPretas() {
+        nrJogadasInvPretas++;
+    }
+    public void jogadasInvalidasBrancas() {
+        nrJogadasInvBrancas++;
+    }
+    public void proximaRodada() {
+        rodada++;
     }
 }
