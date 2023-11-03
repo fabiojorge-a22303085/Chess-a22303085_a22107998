@@ -66,4 +66,9 @@ public class Piece {
     public void setEmJogo() {
         this.estado = "em jogo";
     }
+    public void setCaptura() {
+        this.estado = "capturado";
+        this.posicaoY = -1;
+        this.posicaoX = -1;
+    }
 }

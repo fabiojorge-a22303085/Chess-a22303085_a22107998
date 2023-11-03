@@ -109,12 +109,13 @@ public class GameManager {
                         } else {
                             for (Piece pecaEquipaContraia : pecas) {
                                 if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecas.remove(pecaEquipaContraia);
+                                    pecaEquipaContraia.setCaptura();
                                     stats.decrementaBranca();
                                     stats.capturaPretas();
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
                                     stats.proximaRodada();
+                                    stats.jogadaValidaPreta();
                                     return true;
                                 } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
                                     stats.jogadasInvalidasPretas();
@@ -124,6 +125,7 @@ public class GameManager {
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             stats.proximaRodada();
+                            stats.jogadaValidaPreta();
                             return true;
                         }
                     } else {
@@ -150,12 +152,13 @@ public class GameManager {
                         } else {
                             for (Piece pecaEquipaContraia : pecas) {
                                 if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecas.remove(pecaEquipaContraia);
+                                    pecaEquipaContraia.setCaptura();
                                     stats.decrementaPreta();
                                     stats.capturasBrancas();
                                     peca.setPosicaoX(x1);
                                     peca.setPosicaoY(y1);
                                     stats.proximaRodada();
+                                    stats.jogadaValidaBranca();
                                     return true;
                                 } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
                                     stats.jogadasInvalidasBrancas();
@@ -165,6 +168,7 @@ public class GameManager {
                             peca.setPosicaoX(x1);
                             peca.setPosicaoY(y1);
                             stats.proximaRodada();
+                            stats.jogadaValidaBranca();
                             return true;
                         }
                     } else {
@@ -240,19 +244,35 @@ public class GameManager {
     }
     public boolean gameOver() {
         if(stats.getNrPecasBrancas() > 0 && stats.getNrPecasPretas() == 0) {
+            stats.setResultado("VENCERAM AS BRANCAS");
             return true;
         } else if(stats.getNrPecasBrancas() == 0 && stats.getNrPecasPretas() > 0) {
+            stats.setResultado("VENCERAM AS PRETAS");
             return true;
         } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+            stats.setResultado("EMPATE");
             return true;
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
+            stats.setResultado("EMPATE");
             return true;
         }
         return false;
     }
     public ArrayList<String> getGameResults() {
-        return null;
+        ArrayList<String> gameResults = new ArrayList<>();
+        gameResults.add("JOGO DE CRAZY CHESS");
+        gameResults.add("Resultado: " + stats.getResultado() + "\n " +
+                "---");
+        gameResults.add("Equipa das Pretas");
+        gameResults.add(String.valueOf(stats.getNrCapturasPretas()));
+        gameResults.add(String.valueOf(stats.getJogadasValPretas()));
+        gameResults.add(String.valueOf(stats.getNrJogadasInvPretas()));
+        gameResults.add("Equipa das Brancas");
+        gameResults.add(String.valueOf(stats.getNrCapturasBrancas()));
+        gameResults.add(String.valueOf(stats.getJogdasValBrancas()));
+        gameResults.add(String.valueOf(stats.getJogadasInvBrancas()));
 
+        return gameResults;
     }
     public JPanel getAuthorsPanel() {
         return null;

@@ -3,13 +3,28 @@ package pt.ulusofona.lp2.deisichess;
 public class Stats {
     int nrCapturasPretas = 0;
     int nrCapturasBrancas = 0;
-    int nrJogadasInvPretas = 0;
-    int nrJogadasInvBrancas = 0;
+    int jogadasInvPretas = 0;
+    int jogadasInvBrancas = 0;
+    int jogadasValPretas = 0;
+    int jogdasValBrancas = 0;
     int rodada = 1;
     int nrPecasPretas;
     int nrPecasBrancas;
+    String resultado;
 
     public Stats() {
+    }
+
+    public int getJogadasInvPretas() {
+        return jogadasInvPretas;
+    }
+
+    public int getJogadasValPretas() {
+        return jogadasValPretas;
+    }
+
+    public int getJogdasValBrancas() {
+        return jogdasValBrancas;
     }
 
     public int getNrCapturasPretas() {
@@ -21,14 +36,19 @@ public class Stats {
     }
 
     public int getNrJogadasInvPretas() {
-        return nrJogadasInvPretas;
+        return jogadasInvPretas;
     }
 
-    public int getNrJogadasInvBrancas() {
-        return nrJogadasInvBrancas;
+    public int getJogadasInvBrancas() {
+        return jogadasInvBrancas;
+    }
+
+    public String getResultado() {
+        return resultado;
     }
 
     public int getRodada() {
+
         return rodada;
     }
 
@@ -53,6 +73,10 @@ public class Stats {
         nrPecasPretas--;
     }
 
+    public void setResultado(String resultadoo) {
+        resultado = resultadoo;
+    }
+
     public void setNrPecasPretas(int nrPecasPretas) {
         this.nrPecasPretas = nrPecasPretas;
     }
@@ -68,12 +92,18 @@ public class Stats {
         nrCapturasBrancas++;
     }
     public void jogadasInvalidasPretas() {
-        nrJogadasInvPretas++;
+        jogadasInvPretas++;
     }
     public void jogadasInvalidasBrancas() {
-        nrJogadasInvBrancas++;
+        jogadasInvBrancas++;
     }
     public void proximaRodada() {
         rodada++;
+    }
+    public void jogadaValidaPreta() {
+        jogadasValPretas++;
+    }
+    public void jogadaValidaBranca() {
+        jogdasValBrancas++;
     }
 }
