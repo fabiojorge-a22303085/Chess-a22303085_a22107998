@@ -269,7 +269,7 @@ public class GameManager {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
 
-        } else if(stats.getRodada() >= 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+        } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
             stats.setResultado("EMPATE");
             return false;
 
