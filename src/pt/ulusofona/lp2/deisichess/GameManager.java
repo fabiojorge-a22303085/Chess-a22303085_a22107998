@@ -270,11 +270,11 @@ public class GameManager {
             return true;
 
         } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
-            stats.setResultado("jogo Completo Empate Por Exaustao");
+            stats.setResultado("EMPATE");
             return true;
 
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
-            stats.setResultado("muitas Jogadas Sem Captura Mas Sem Empate Por Exaustao");
+            stats.setResultado("EMPATE");
             return true;
         }
 
@@ -290,10 +290,13 @@ public class GameManager {
         gameResults.add(String.valueOf(stats.getNrCapturasPretas()));
         gameResults.add(String.valueOf(stats.getJogadasValPretas()));
         gameResults.add(String.valueOf(stats.getNrJogadasInvPretas()));
+        gameResults.add(String.valueOf(stats.getNrPecasPretas()));
         gameResults.add("Equipa das Brancas");
         gameResults.add(String.valueOf(stats.getNrCapturasBrancas()));
         gameResults.add(String.valueOf(stats.getJogdasValBrancas()));
         gameResults.add(String.valueOf(stats.getJogadasInvBrancas()));
+        gameResults.add(String.valueOf(stats.getNrPecasBrancas()));
+
 
         return gameResults;
     }
