@@ -290,13 +290,10 @@ public class GameManager {
         gameResults.add(String.valueOf(stats.getNrCapturasPretas()));
         gameResults.add(String.valueOf(stats.getJogadasValPretas()));
         gameResults.add(String.valueOf(stats.getNrJogadasInvPretas()));
-        gameResults.add(String.valueOf(stats.getNrPecasPretas()));
         gameResults.add("Equipa das Brancas");
         gameResults.add(String.valueOf(stats.getNrCapturasBrancas()));
         gameResults.add(String.valueOf(stats.getJogdasValBrancas()));
         gameResults.add(String.valueOf(stats.getJogadasInvBrancas()));
-        gameResults.add(String.valueOf(stats.getNrPecasBrancas()));
-
 
         return gameResults;
     }
