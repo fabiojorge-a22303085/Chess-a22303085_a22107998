@@ -273,10 +273,8 @@ public class GameManager {
             stats.setResultado("EMPATE");
             return true;
 
-        } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
-            stats.setResultado("EMPATE");
-            return true;
         }
+
         return false;
     }
 
