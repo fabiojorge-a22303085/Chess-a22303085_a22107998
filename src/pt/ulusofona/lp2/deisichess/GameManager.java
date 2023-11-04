@@ -270,9 +270,12 @@ public class GameManager {
             return true;
 
         } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
-            stats.setResultado("EMPATE");
+            stats.setResultado("jogo Completo Empate Por Exaustao");
             return true;
 
+        } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
+            stats.setResultado("muitas Jogadas Sem Captura Mas Sem Empate Por Exaustao");
+            return true;
         }
 
         return false;
