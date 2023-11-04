@@ -271,7 +271,7 @@ public class GameManager {
 
         } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
             stats.setResultado("EMPATE");
-            return false;
+            return true;
 
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
             stats.setResultado("EMPATE");
