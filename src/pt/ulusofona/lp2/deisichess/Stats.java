@@ -77,6 +77,10 @@ public class Stats {
         resultado = resultadoo;
     }
 
+    public void setRodada(int rodada) {
+        this.rodada = rodada;
+    }
+
     public void setNrPecasPretas(int nrPecasPretas) {
         this.nrPecasPretas = nrPecasPretas;
     }
