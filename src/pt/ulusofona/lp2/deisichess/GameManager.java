@@ -278,7 +278,7 @@ public class GameManager {
             return true;
         }
 
-        return true;
+        return false;
     }
 
     public ArrayList<String> getGameResults() {
