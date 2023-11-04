@@ -264,18 +264,22 @@ public class GameManager {
         if(stats.getNrPecasBrancas() > 0 && stats.getNrPecasPretas() == 0) {
             stats.setResultado("VENCERAM AS BRANCAS");
             return true;
+
         } else if(stats.getNrPecasBrancas() == 0 && stats.getNrPecasPretas() > 0) {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
-        } else if(stats.getRodada() == 11 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+
+        } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
             stats.setResultado("EMPATE");
             return true;
+
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
             stats.setResultado("EMPATE");
             return true;
         }
         return false;
     }
+
     public ArrayList<String> getGameResults() {
         ArrayList<String> gameResults = new ArrayList<>();
         gameResults.add("JOGO DE CRAZY CHESS");
