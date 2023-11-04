@@ -269,9 +269,9 @@ public class GameManager {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
 
-        } else if(stats.getRodada() == 11 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+        } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
             stats.setResultado("EMPATE");
-            return true;
+            return false;
 
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
             stats.setResultado("EMPATE");
