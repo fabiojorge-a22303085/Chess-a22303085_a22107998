@@ -226,6 +226,7 @@ public class GameManager {
                     pieceInfo[4] = piece.getEstado();
                     pieceInfo[5] = "";
                     pieceInfo[6] = "";
+                    return pieceInfo;
                 }
 
 
@@ -266,7 +267,7 @@ public class GameManager {
         } else if(stats.getNrPecasBrancas() == 0 && stats.getNrPecasPretas() > 0) {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
-        } else if(stats.getRodada() == 10 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+        } else if(stats.getRodada() == 11 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
             stats.setResultado("EMPATE");
             return true;
         } else if(stats.getNrPecasPretas() == 1 && stats.getNrPecasBrancas() == 1) {
@@ -278,8 +279,8 @@ public class GameManager {
     public ArrayList<String> getGameResults() {
         ArrayList<String> gameResults = new ArrayList<>();
         gameResults.add("JOGO DE CRAZY CHESS");
-        gameResults.add("Resultado: " + stats.getResultado() + "\n " +
-                "---");
+        gameResults.add("Resultado: " + stats.getResultado());
+        gameResults.add("---");
         gameResults.add("Equipa das Pretas");
         gameResults.add(String.valueOf(stats.getNrCapturasPretas()));
         gameResults.add(String.valueOf(stats.getJogadasValPretas()));
