@@ -81,13 +81,6 @@ public class Stats {
         this.rodada = rodada;
     }
 
-    public void setNrPecasPretas(int nrPecasPretas) {
-        this.nrPecasPretas = nrPecasPretas;
-    }
-
-    public void setNrPecasBrancas(int nrPecasBrancas) {
-        this.nrPecasBrancas = nrPecasBrancas;
-    }
     public void capturaPretas() {
         nrCapturasPretas++;
 

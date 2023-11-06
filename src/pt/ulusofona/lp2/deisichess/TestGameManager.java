@@ -12,7 +12,7 @@ public class TestGameManager {
     //Testes da função move
     @Test
     public void test_move_moverHorizontalPreta4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -20,7 +20,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverHorizontaPreta8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -28,7 +28,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverVerticalPreta4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -36,7 +36,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverVertical8x8Preta() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -44,7 +44,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverDiagonal4x4Preta() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -52,7 +52,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverDiagonalPreta8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -60,7 +60,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_casa_vaziaPreta4x4() {
-        File file = new File ("4x4.txt");
+        File file = new File ("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -68,7 +68,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_casa_vaziaPreta8x8() {
-        File file = new File ("8x8.txt");
+        File file = new File ("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -76,7 +76,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_paraCimaDaMesmaEquipaPreta4x4() {
-        File file = new File ("4x4.txt");
+        File file = new File ("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -84,7 +84,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_paraCimaDaMesmaEquipaPreta8x8() {
-        File file = new File ("8x8.txt");
+        File file = new File ("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -92,7 +92,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_capturaPreta4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -100,7 +100,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_capturaPreta8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.pecas.get(3).setPosicaoY(3);
@@ -112,7 +112,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverHorizontalBranca4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -121,7 +121,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverHorizontaBranca8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -130,7 +130,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverVerticalBranca4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -139,7 +139,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverVerticalBranca8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -148,7 +148,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverDiagonal4x4Branca() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -157,7 +157,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_moverDiagonalBranca8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -166,7 +166,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_casa_vaziaBranca4x4() {
-        File file = new File ("4x4.txt");
+        File file = new File ("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -175,7 +175,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_casa_vaziaBranca8x8() {
-        File file = new File ("8x8.txt");
+        File file = new File ("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -184,7 +184,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_paraCimaDaMesmaEquipaBranca4x4() {
-        File file = new File ("4x4.txt");
+        File file = new File ("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -193,7 +193,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_paraCimaDaMesmaEquipaBranca8x8() {
-        File file = new File ("8x8.txt");
+        File file = new File ("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -202,7 +202,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_capturaBranca4x4() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(2);
@@ -211,7 +211,7 @@ public class TestGameManager {
     }
     @Test
     public void test_move_capturaBranca8x8() {
-        File file = new File("8x8.txt");
+        File file = new File("test-files/8x8.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.pecas.get(3).setPosicaoY(3);
@@ -226,7 +226,7 @@ public class TestGameManager {
     //Testes getSquareInfo
     @Test
     public void test_getSquareInfo_temPeca() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -242,7 +242,7 @@ public class TestGameManager {
     }
     @Test
     public void test_getSquareInfo_naoTemPeca() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -256,7 +256,7 @@ public class TestGameManager {
     //Testes getPieceInfo
     @Test
     public void test_getPieceInfo_pecaEmJogo() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -290,7 +290,7 @@ public class TestGameManager {
     }
     @Test
     public void test_getPieceInfo_naoExistePecaComId() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -302,7 +302,7 @@ public class TestGameManager {
     //Testes da função getPieceInfoAsString
     @Test
     public void test_getPieceInfoAsString_pecaEmJogo() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -322,7 +322,7 @@ public class TestGameManager {
     }
     @Test
     public void test_getPieceInfoAsString_naoExistePecaComId() {
-        File file = new File("4x4.txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
 
@@ -335,7 +335,7 @@ public class TestGameManager {
     //Testes getCurrentTeamId
     @Test
     public void test_getCurrentTeamId_EquipaPreta() {
-        File file = new File("4x4-txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(5);
@@ -344,7 +344,7 @@ public class TestGameManager {
     }
     @Test
     public void test_getCurrentTeamId_EquipaBranca() {
-        File file = new File("4x4-txt");
+        File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
         gameManager.loadGame(file);
         gameManager.stats.setRodada(6);
