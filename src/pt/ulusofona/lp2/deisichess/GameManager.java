@@ -126,6 +126,7 @@ public class GameManager {
                                     peca.setPosicaoY(y1);
                                     stats.proximaRodada();
                                     stats.jogadaValidaPreta();
+                                    stats.rodadaSemCapturaReset();
                                     return true;
                                 } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
                                     stats.jogadasInvalidasPretas();
@@ -136,6 +137,7 @@ public class GameManager {
                             peca.setPosicaoY(y1);
                             stats.proximaRodada();
                             stats.jogadaValidaPreta();
+                            stats.rodadaSemCaptura();
                             return true;
                         }
                     } else {
@@ -169,6 +171,7 @@ public class GameManager {
                                     peca.setPosicaoY(y1);
                                     stats.proximaRodada();
                                     stats.jogadaValidaBranca();
+                                    stats.rodadaSemCapturaReset();
                                     return true;
                                 } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
                                     stats.jogadasInvalidasBrancas();
@@ -179,6 +182,7 @@ public class GameManager {
                             peca.setPosicaoY(y1);
                             stats.proximaRodada();
                             stats.jogadaValidaBranca();
+                            stats.rodadaSemCaptura();
                             return true;
                         }
                     } else {
@@ -190,7 +194,6 @@ public class GameManager {
         }
         return false;
     }
-
 
 
     public String[] getSquareInfo(int x, int y) {
@@ -279,7 +282,7 @@ public class GameManager {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
 
-        } else if(stats.getRodada() == 11 && stats.getNrCapturasPretas() == 0 && stats.getNrCapturasBrancas() == 0) {
+        } else if(stats.getRodada() == 11 & stats.getRodadasSemCaptura() == 10) {
             stats.setResultado("EMPATE");
             return true;
 

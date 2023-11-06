@@ -116,4 +116,5 @@ public class Stats {
     public void jogadaValidaBranca() {
         jogdasValBrancas++;
     }
+
 }
