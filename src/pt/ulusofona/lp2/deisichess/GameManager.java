@@ -273,6 +273,7 @@ public class GameManager {
 
 
     }
+
     public boolean gameOver() {
         if(stats.getNrPecasBrancas() > 0 && stats.getNrPecasPretas() == 0) {
             stats.setResultado("VENCERAM AS BRANCAS");
@@ -282,7 +283,7 @@ public class GameManager {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
 
-        } else if(stats.getRodada() == 11 & stats.getRodadasSemCaptura() == 10) {
+        } else if(stats.getRodadasSemCaptura() == 10) {
             stats.setResultado("EMPATE");
             return true;
 
