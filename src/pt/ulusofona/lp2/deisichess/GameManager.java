@@ -41,6 +41,10 @@ public class GameManager {
                     }
                     String[] dados = line.split(":");
 
+                    if(dados.length < 4) {
+                        return false;
+                    }
+
                     Piece peca = new Piece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
                     pecas.add(peca);
 
@@ -57,6 +61,10 @@ public class GameManager {
                         return false;
                     }
                     String[] dados = line.split(":");
+
+                    if(dados.length < board.getBoardSize()){
+                        return false;
+                    }
                     for(int j = 0; j < board.getBoardSize(); j++) {
                         for(Piece peca : pecas) {
                             if(Integer.parseInt(dados[j]) == peca.getPieceId()) {
