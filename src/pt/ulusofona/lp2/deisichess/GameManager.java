@@ -21,6 +21,7 @@ public class GameManager {
         return board.getBoardSize();
     }
 
+
     public boolean loadGame(File file) {
         pecas = new ArrayList<>();
 
@@ -92,6 +93,7 @@ public class GameManager {
         }
         return true;
     }
+
 
 
     public boolean move(int x0, int y0, int x1, int y1) {
