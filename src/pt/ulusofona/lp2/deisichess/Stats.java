@@ -11,6 +11,7 @@ public class Stats {
     int nrPecasPretas;
     int nrPecasBrancas;
     String resultado;
+    int rodadasSemCaptura = 0;
 
     public Stats() {
     }
@@ -69,6 +70,18 @@ public class Stats {
         nrPecasBrancas--;
 
     }
+    public void rodadaSemCaptura() {
+        rodadasSemCaptura++;
+
+    }
+
+    public int getRodadasSemCaptura() {
+        return rodadasSemCaptura;
+    }
+    public void rodadaSemCapturaReset() {
+        rodadasSemCaptura = 0;
+    }
+
     public void decrementaPreta() {
         nrPecasPretas--;
     }
