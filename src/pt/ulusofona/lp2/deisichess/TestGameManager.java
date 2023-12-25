@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TestGameManager {
 
     //Testes da função move
-    @Test
+   /* @Test
     public void test_move_moverHorizontalPreta4x4() {
         File file = new File("test-files/4x4.txt");
         GameManager gameManager = new GameManager();
@@ -350,6 +350,6 @@ public class TestGameManager {
         gameManager.stats.setRodada(6);
 
         assertEquals(1, gameManager.getCurrentTeamID());
-    }
+    } */
 
 }

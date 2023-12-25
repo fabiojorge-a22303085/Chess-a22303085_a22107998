@@ -3,6 +3,8 @@ import java.io.*;
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 import javax.swing.*;
 
 public class GameManager {
@@ -22,11 +24,13 @@ public class GameManager {
     }
 
 
-    public boolean loadGame(File file) {
+    public void loadGame(File file) throws InvalidGameInputException, IOException {
         pecas = new ArrayList<>();
 
         try {
-            if (file.exists()) {
+            if (!file.exists()) {
+                throw new FileNotFoundException("O ficheiro não existe: " + file.getPath());
+            }
                 BufferedReader br = new BufferedReader(new FileReader(file));
 
                 int boardSize = Integer.parseInt(br.readLine());
@@ -38,12 +42,15 @@ public class GameManager {
                 for(int i = 0; i < nrPecas; i++) {
                     String line = br.readLine();
                     if(line == null) {
-                        return false;
+                        throw new InvalidGameInputException(i +1, "LINHA NULA");
                     }
                     String[] dados = line.split(":");
 
                     if(dados.length < 4) {
-                        return false;
+                        throw new InvalidGameInputException(i + 1, "DADOS A MENOS (Esperava: 4 ; Obtive:" + dados.length + ")");
+
+                    } else if(dados.length > 4) {
+                        throw new InvalidGameInputException(i + 1, "DADOS A MAIS (Esperava: 4 ; Obtive:" + dados.length + ")");
                     }
 
                     Piece peca = new Piece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
@@ -59,12 +66,15 @@ public class GameManager {
                 for(int i = 0; i < board.getBoardSize(); i++) {
                     String line = br.readLine();
                     if(line == null) {
-                        return false;
+                        throw new InvalidGameInputException(i +1, "LINHA NULA");
                     }
                     String[] dados = line.split(":");
 
                     if(dados.length < board.getBoardSize()){
-                        return false;
+                        throw new InvalidGameInputException(i + 1, "DADOS A MENOS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
+
+                    } else if(dados.length > board.getBoardSize()){
+                        throw new InvalidGameInputException(i + 1, "DADOS A MAIS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
                     }
                     for(int j = 0; j < board.getBoardSize(); j++) {
                         for(Piece peca : pecas) {
@@ -85,13 +95,9 @@ public class GameManager {
                         }
                     }
                 }
-            } else {
-                return false;
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return true;
     }
 
 
@@ -252,25 +258,25 @@ public class GameManager {
 
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
-            if(piece.getPieceId() == ID) {
-                if(piece.getEstado().equals("em jogo")) {
-                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
+            if (piece.getPieceId() == ID) {
+                if (piece.getEstado().equals("em jogo")) {
+                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
                             String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
                 } else if (piece.getEstado().equals("capturado")) {
-                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + String.valueOf(piece.getTipoPeca()) + " | " +
+                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
                             String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
                 }
             }
         }
         return pieceInfoAsString;
     }
+
     public int getCurrentTeamID() {
         if(stats.getRodada() % 2 == 0) {
-            return 1;
+            return 10;
         } else {
-            return 0;
+            return 20;
         }
-
 
     }
     public boolean gameOver() {
@@ -282,7 +288,7 @@ public class GameManager {
             stats.setResultado("VENCERAM AS PRETAS");
             return true;
 
-        } else if(stats.getRodada() == 11 & stats.getRodadasSemCaptura() == 10) {
+        } else if(stats.getRodadasSemCaptura() == 10) {
             stats.setResultado("EMPATE");
             return true;
 
@@ -312,6 +318,20 @@ public class GameManager {
     }
     public JPanel getAuthorsPanel() {
         return null;
+    }
 
+    public void saveGame (File file) throws IOException {
+    }
+
+    public void undo() {
+
+    }
+
+    public List<Comparable> getHints (int x, int y) {
+        return null;
+    }
+
+    public Map<String, String > customizeBoard() {
+        return null;
     }
 }
