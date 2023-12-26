@@ -3,6 +3,7 @@ import java.io.*;
 import java.io.FileReader;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.swing.*;
@@ -332,6 +333,6 @@ public class GameManager {
     }
 
     public Map<String, String > customizeBoard() {
-        return null;
+        return new HashMap<>();
     }
 }
