@@ -7,17 +7,13 @@ public class Stats {
     int jogadasInvBrancas = 0;
     int jogadasValPretas = 0;
     int jogdasValBrancas = 0;
-    int rodada = 1;
+    int rodada = 0;
     int nrPecasPretas;
     int nrPecasBrancas;
     String resultado;
     int rodadasSemCaptura = 0;
 
     public Stats() {
-    }
-
-    public int getJogadasInvPretas() {
-        return jogadasInvPretas;
     }
 
     public int getJogadasValPretas() {

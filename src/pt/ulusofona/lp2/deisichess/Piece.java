@@ -11,6 +11,9 @@ public class Piece {
     int posicaoX;
     int posicaoY;
     String estado;
+    int nrCapturas;
+    int pontosPorCapturas;
+    int nrjJogadasInvalidas;
 
     public Piece(int id, int tipoPeca, int equipa, String alcunha) {
         this.id = id;
@@ -57,6 +60,9 @@ public class Piece {
         } else if (this.tipoPeca == 7) {
             this.tipoPecaAsString = "Joker/";
         }
+        this.nrCapturas = 0;
+        this.pontosPorCapturas = 0;
+        this.nrjJogadasInvalidas = 0;
     }
 
     public int getPieceId() {
@@ -65,23 +71,12 @@ public class Piece {
     public int getTipoPeca() {
         return tipoPeca;
     }
-
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
     }
-
     public int getValor() {
         return valor;
     }
-
-    public String valorAsString() {
-        if(tipoPeca == 0) {
-            return "(infinito)";
-        } else {
-            return String.valueOf(valor);
-        }
-    }
-
     public int getEquipa() {
         return equipa;
     }
@@ -121,5 +116,21 @@ public class Piece {
         this.estado = "capturado";
         this.posicaoY = -1;
         this.posicaoX = -1;
+    }
+    public String valorAsString() {
+        if(tipoPeca == 0) {
+            return "(infinito)";
+        } else {
+            return String.valueOf(valor);
+        }
+    }
+    public void incrementaNrCaptura() {
+        nrCapturas++;
+    }
+    public void somaPontosPorCaptura(int pontos) {
+        pontosPorCapturas += pontos;
+    }
+    public void somaJogadasInvalidas() {
+        nrjJogadasInvalidas++;
     }
 }
