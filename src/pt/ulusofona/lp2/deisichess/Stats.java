@@ -48,7 +48,6 @@ public class Stats {
 
         return rodada;
     }
-
     public int getNrPecasPretas() {
         return nrPecasPretas;
     }
@@ -66,6 +65,9 @@ public class Stats {
         nrPecasBrancas--;
 
     }
+    public void decrementaPreta() {
+        nrPecasPretas--;
+    }
     public void rodadaSemCaptura() {
         rodadasSemCaptura++;
 
@@ -76,10 +78,6 @@ public class Stats {
     }
     public void rodadaSemCapturaReset() {
         rodadasSemCaptura = 0;
-    }
-
-    public void decrementaPreta() {
-        nrPecasPretas--;
     }
 
     public void setResultado(String resultadoo) {
@@ -97,20 +95,21 @@ public class Stats {
     public void capturasBrancas() {
         nrCapturasBrancas++;
     }
-    public void jogadasInvalidasPretas() {
-        jogadasInvPretas++;
-    }
-    public void jogadasInvalidasBrancas() {
-        jogadasInvBrancas++;
+    public void jogadasInvalidas(int idEquipa) {
+        if(idEquipa == 10) {
+            jogadasInvPretas++;
+        } else if (idEquipa == 20) {
+            jogadasInvBrancas++;
+        }
     }
     public void proximaRodada() {
         rodada++;
     }
-    public void jogadaValidaPreta() {
-        jogadasValPretas++;
+    public void jogadasValidas(int idEquipa) {
+        if(idEquipa == 10) {
+            jogadasValPretas++;
+        } else if (idEquipa == 20) {
+            jogdasValBrancas++;
+        }
     }
-    public void jogadaValidaBranca() {
-        jogdasValBrancas++;
-    }
-
 }

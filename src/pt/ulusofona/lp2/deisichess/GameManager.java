@@ -14,6 +14,7 @@ public class GameManager {
     Board board = new Board(1);
     int nrPecas;
     Stats stats = new Stats();
+    int personagemJoker = 0;
 
 
 
@@ -30,7 +31,7 @@ public class GameManager {
 
         try {
             if (!file.exists()) {
-                throw new FileNotFoundException("O ficheiro não existe: " + file.getPath());
+                throw new FileNotFoundException("Ficheiro não existente");
             }
                 BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -43,15 +44,15 @@ public class GameManager {
                 for(int i = 0; i < nrPecas; i++) {
                     String line = br.readLine();
                     if(line == null) {
-                        throw new InvalidGameInputException(i +1, "LINHA NULA");
+                        throw new InvalidGameInputException(i + 3, "LINHA NULA");
                     }
                     String[] dados = line.split(":");
 
                     if(dados.length < 4) {
-                        throw new InvalidGameInputException(i + 1, "DADOS A MENOS (Esperava: 4 ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3, "DADOS A MENOS (Esperava: 4 ; Obtive:" + dados.length + ")");
 
                     } else if(dados.length > 4) {
-                        throw new InvalidGameInputException(i + 1, "DADOS A MAIS (Esperava: 4 ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3, "DADOS A MAIS (Esperava: 4 ; Obtive:" + dados.length + ")");
                     }
 
                     Piece peca = new Piece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
@@ -67,15 +68,15 @@ public class GameManager {
                 for(int i = 0; i < board.getBoardSize(); i++) {
                     String line = br.readLine();
                     if(line == null) {
-                        throw new InvalidGameInputException(i +1, "LINHA NULA");
+                        throw new InvalidGameInputException(i + 3 + nrPecas, "LINHA NULA");
                     }
                     String[] dados = line.split(":");
 
                     if(dados.length < board.getBoardSize()){
-                        throw new InvalidGameInputException(i + 1, "DADOS A MENOS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MENOS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
 
                     } else if(dados.length > board.getBoardSize()){
-                        throw new InvalidGameInputException(i + 1, "DADOS A MAIS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MAIS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
                     }
                     for(int j = 0; j < board.getBoardSize(); j++) {
                         for(Piece peca : pecas) {
@@ -100,107 +101,63 @@ public class GameManager {
             e.printStackTrace();
         }
     }
+    public void mudaPecaJoker() {
+        if(personagemJoker == 6) {
+            personagemJoker = 0;
+        } else {
+            personagemJoker++;
+        }
+    }
 
 
 
     public boolean move(int x0, int y0, int x1, int y1) {
         for (Piece peca : pecas) {
             if (x0 == peca.getPosicaoX() && y0 == peca.getPosicaoY()) {
-                if (stats.getRodada() % 2 != 0) {
-                    if (peca.getEquipa() == 0) {
-                        if (x1 < 0 || y1 < 0 || x1 > board.getBoardSize()- 1 || y1 > board.getBoardSize() - 1) {
-                            stats.jogadasInvalidasPretas();
-                            return false;
-                        } else if (x0 < 0 || y0 < 0 || x0 > board.getBoardSize()- 1 || y0 > board.getBoardSize() - 1) {
-                            stats.jogadasInvalidasPretas();
-                            return false;
-                        } else if (x0 == x1 && y0 == y1) {
-                            stats.jogadasInvalidasPretas();
-                            return false;
-                        } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
-                            stats.jogadasInvalidasPretas();
-                            return false;
-                        } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
-                            stats.jogadasInvalidasPretas();
-                            return false;
-                        } else {
-                            for (Piece pecaEquipaContraia : pecas) {
-                                if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecaEquipaContraia.setCaptura();
-                                    stats.decrementaBranca();
-                                    stats.capturaPretas();
-                                    peca.setPosicaoX(x1);
-                                    peca.setPosicaoY(y1);
-                                    stats.proximaRodada();
-                                    stats.jogadaValidaPreta();
-                                    stats.rodadaSemCapturaReset();
-                                    return true;
-                                } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
-                                    stats.jogadasInvalidasPretas();
-                                    return false;
-                                }
-                            }
-                            peca.setPosicaoX(x1);
-                            peca.setPosicaoY(y1);
-                            stats.proximaRodada();
-                            stats.jogadaValidaPreta();
-                            stats.rodadaSemCaptura();
-                            return true;
-                        }
-                    } else {
-                        stats.jogadasInvalidasPretas();
+                int equipe = peca.getEquipa();
+                int rodada = stats.getRodada();
+
+                if ((rodada % 2 == 0 && equipe == 10) || (rodada % 2 != 0 && equipe == 20)) {
+                    if (x1 < 0 || y1 < 0 || x1 > board.getBoardSize() - 1 || y1 > board.getBoardSize() - 1 || x0 < 0 || y0 < 0 || x0 > board.getBoardSize() - 1 || y0 > board.getBoardSize() - 1) {
+                        stats.jogadasInvalidas(equipe);
                         return false;
+                    } else if (peca.movimentacaoPecas(x0, y0, x1, y1, peca.getTipoPeca(), personagemJoker)) {
+                        stats.jogadasInvalidas(equipe);
+                        return false;
+                    } else {
+                        for (Piece pecaEquipaContraia : pecas) {
+                            if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && equipe != pecaEquipaContraia.getEquipa()) {
+                                pecaEquipaContraia.setCaptura();
+                                stats.decrementaBranca();
+                                stats.capturaPretas();
+                                peca.setPosicaoX(x1);
+                                peca.setPosicaoY(y1);
+                                stats.proximaRodada();
+                                stats.jogadasValidas(equipe);
+                                stats.rodadaSemCapturaReset();
+                                mudaPecaJoker();
+                                return true;
+                            } else if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && equipe == pecaEquipaContraia.getEquipa()) {
+                                stats.jogadasValidas(equipe);
+                                return false;
+                            }
+                        }
+                        peca.setPosicaoX(x1);
+                        peca.setPosicaoY(y1);
+                        stats.proximaRodada();
+                        stats.jogadasValidas(equipe);
+                        stats.rodadaSemCaptura();
+                        mudaPecaJoker();
+                        return true;
                     }
                 } else {
-                    if (peca.getEquipa() == 1) {
-                        if (x1 < 0 || y1 < 0 || x1 > board.getBoardSize() - 1 || y1 > board.getBoardSize() - 1) {
-                            stats.jogadasInvalidasBrancas();
-                            return false;
-                        } else if (x0 < 0 || y0 < 0 || x0 > board.getBoardSize() - 1 || y0 > board.getBoardSize() - 1) {
-                            stats.jogadasInvalidasBrancas();
-                            return false;
-                        } else if (x0 == x1 && y0 == y1) {
-                            stats.jogadasInvalidasBrancas();
-                            return false;
-                        } else if (x0 - 1 != x1 && x0 != x1 && x0 + 1 != x1) {
-                            stats.jogadasInvalidasBrancas();
-                            return false;
-                        } else if (y0 - 1 != y1 && y0 != y1 && y0 + 1 != y1) {
-                            stats.jogadasInvalidasBrancas();
-                            return false;
-                        } else {
-                            for (Piece pecaEquipaContraia : pecas) {
-                                if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() != pecaEquipaContraia.getEquipa()) {
-                                    pecaEquipaContraia.setCaptura();
-                                    stats.decrementaPreta();
-                                    stats.capturasBrancas();
-                                    peca.setPosicaoX(x1);
-                                    peca.setPosicaoY(y1);
-                                    stats.proximaRodada();
-                                    stats.jogadaValidaBranca();
-                                    stats.rodadaSemCapturaReset();
-                                    return true;
-                                } else if(pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && peca.getEquipa() == pecaEquipaContraia.getEquipa()){
-                                    stats.jogadasInvalidasBrancas();
-                                    return false;
-                                }
-                            }
-                            peca.setPosicaoX(x1);
-                            peca.setPosicaoY(y1);
-                            stats.proximaRodada();
-                            stats.jogadaValidaBranca();
-                            stats.rodadaSemCaptura();
-                            return true;
-                        }
-                    } else {
-                        stats.jogadasInvalidasBrancas();
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
         return false;
     }
+
 
 
     public String[] getSquareInfo(int x, int y) {
