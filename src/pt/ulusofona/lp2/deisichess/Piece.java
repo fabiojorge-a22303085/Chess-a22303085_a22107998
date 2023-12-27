@@ -112,6 +112,22 @@ public class Piece {
     public String getPosicaoXY() {
         return "(" + String.valueOf(posicaoX) + ", " + String.valueOf(posicaoY) + ")";
     }
+    public String getTipoPecaJokerAsString(int id) {
+        if(id == 1) {
+            return "Rainha";
+        } else if(id == 2) {
+            return "Ponei Mágico";
+        }else if(id == 3) {
+            return "Padre da Vila";
+        }else if(id == 4) {
+            return "TorreHor";
+        }else if(id == 5) {
+            return "TorreVer";
+        }else if (id == 6) {
+            return "Homer Simpson";
+        }
+        return "";
+    }
 
 
     public void setPosicaoX(int posicaoX) {
@@ -235,9 +251,7 @@ public class Piece {
         } else if (tipoPeca == 6) { //HomerSipson
             return validaHomerSipson(x0, x1, y0, y1);
         } else if(tipoPeca == 7) {
-            if(personagemJoker == 0) {
-                return validaRei(x0, x1, y0, y1);
-            } else if (personagemJoker == 1) {
+            if (personagemJoker == 1) {
                 return validaRainha(x0, x1, y0, y1);
             } else if (personagemJoker == 2) {
                 return validaPoneiMagico(x0, x1, y0, y1);

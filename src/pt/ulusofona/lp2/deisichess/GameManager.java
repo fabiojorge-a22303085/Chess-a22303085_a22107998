@@ -14,7 +14,7 @@ public class GameManager {
     Board board = new Board(1);
     int nrPecas;
     Stats stats = new Stats();
-    int personagemJoker = 0;
+    int personagemJoker = 1;
 
 
 
@@ -103,13 +103,11 @@ public class GameManager {
     }
     public void mudaPecaJoker() {
         if(personagemJoker == 6) {
-            personagemJoker = 0;
+            personagemJoker = 1;
         } else {
             personagemJoker++;
         }
     }
-
-
 
     public boolean move(int x0, int y0, int x1, int y1) {
         for (Piece peca : pecas) {
@@ -217,13 +215,24 @@ public class GameManager {
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if (piece.getPieceId() == ID) {
-                if (piece.getEstado().equals("em jogo")) {
-                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
-                            String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
-                } else if (piece.getEstado().equals("capturado")) {
-                    pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
-                            String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                if(piece.getPieceId() == 7) {
+                    if (piece.getEstado().equals("em jogo")) {
+                        pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + "/" + piece.getTipoPecaJokerAsString(personagemJoker) + " | " + piece.valorAsString() + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                    } else if (piece.getEstado().equals("capturado")) {
+                        pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + "/" + piece.getTipoPecaJokerAsString(personagemJoker) + " | " + piece.valorAsString() + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                    }
+                } else {
+                    if (piece.getEstado().equals("em jogo")) {
+                        pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                    } else if (piece.getEstado().equals("capturado")) {
+                        pieceInfoAsString += String.valueOf(piece.getPieceId()) + " | " + piece.getTipoPecaAsString() + " | " + piece.valorAsString() + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                    }
                 }
+
             }
         }
         return pieceInfoAsString;
