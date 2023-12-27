@@ -57,11 +57,11 @@ public class Piece {
         } else if (this.tipoPeca == 4) {
             this.tipoPecaAsString = "TorreHor";
         } else if (this.tipoPeca == 5) {
-            this.tipoPecaAsString = "TorreVer";
+            this.tipoPecaAsString = "TorreVert";
         } else if (this.tipoPeca == 6) {
             this.tipoPecaAsString = "Homer Simpson";
         } else if (this.tipoPeca == 7) {
-            this.tipoPecaAsString = "Joker/";
+            this.tipoPecaAsString = "Joker";
         }
         this.nrCapturas = 0;
         this.pontosPorCapturas = 0;
@@ -122,7 +122,7 @@ public class Piece {
         }else if(id == 4) {
             return "TorreHor";
         }else if(id == 5) {
-            return "TorreVer";
+            return "TorreVert";
         }else if (id == 6) {
             return "Homer Simpson";
         }
