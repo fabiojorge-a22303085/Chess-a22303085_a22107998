@@ -49,10 +49,10 @@ public class GameManager {
                     String[] dados = line.split(":");
 
                     if(dados.length < 4) {
-                        throw new InvalidGameInputException(i + 3, "DADOS A MENOS (Esperava: 4 ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3, "DADOS A MENOS (Esperava: 4 ; Obtive: " + dados.length + ")");
 
                     } else if(dados.length > 4) {
-                        throw new InvalidGameInputException(i + 3, "DADOS A MAIS (Esperava: 4 ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3, "DADOS A MAIS (Esperava: 4 ; Obtive: " + dados.length + ")");
                     }
 
                     Piece peca = new Piece(Integer.parseInt(dados[0]), Integer.parseInt(dados[1]), Integer.parseInt(dados[2]), dados[3]);
@@ -73,10 +73,10 @@ public class GameManager {
                     String[] dados = line.split(":");
 
                     if(dados.length < board.getBoardSize()){
-                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MENOS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MENOS (Esperava: " + board.getBoardSize() + " ; Obtive: " + dados.length + ")");
 
                     } else if(dados.length > board.getBoardSize()){
-                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MAIS (Esperava: " + board.getBoardSize() + " ; Obtive:" + dados.length + ")");
+                        throw new InvalidGameInputException(i + 3 + nrPecas, "DADOS A MAIS (Esperava: " + board.getBoardSize() + " ; Obtive: " + dados.length + ")");
                     }
                     for(int j = 0; j < board.getBoardSize(); j++) {
                         for(Piece peca : pecas) {
