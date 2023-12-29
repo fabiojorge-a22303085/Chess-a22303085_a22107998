@@ -30,11 +30,13 @@ public class Rainha extends  Piece {
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
     }
+
+
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         return false;
     }
 
-    public boolean validaMovimentos(int x0, int y0, int x1, int y1) {
+    public boolean validaMovimentos(int x0, int y0, int x1, int y1, int rodada) {
         if (x0 == x1 && y0 == y1) {
             return true;
         } else if (x0 != x1 && x0 - 1 != x1 && x0 - 2 != x1 && x0 - 3 != x1 && x0 - 4 != x1 && x0 - 5 != x1 && x0 + 1 != x1 && x0 + 2 != x1 && x0 + 3 != x1 && x0 + 4 != x1 && x0 + 5 != x1) {

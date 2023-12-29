@@ -1,7 +1,6 @@
 package pt.ulusofona.lp2.deisichess;
 
 public class Joker extends Piece {
-
     int valor;
     String icone;
     String tipoPecaAsString;
@@ -33,6 +32,15 @@ public class Joker extends Piece {
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
     }
+    @Override
+    public void setAcordaOuDorme(int rodada) {
+
+    }
+    @Override
+    public boolean validaMovimentos(int x0, int y0, int x1, int y1, int rodada) {
+        return true;
+    }
+
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         switch (imitacaoJoker) {
             case 1:
@@ -92,10 +100,6 @@ public class Joker extends Piece {
         return false;
     }
 
-    @Override
-    public boolean validaMovimentos(int x0, int y0, int x1, int y1) {
-        return false;
-    }
 }
 
 

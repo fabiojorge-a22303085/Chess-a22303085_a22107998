@@ -156,6 +156,11 @@ public class GameManager {
                                     stats.jogadasValidas(equipe);
                                     stats.rodadaSemCapturaReset();
                                     mudaPecaJoker();
+                                    for(Piece homerSimpson : pecas) {
+                                        if(homerSimpson.getTipoPeca() == 6) {
+                                            homerSimpson.isEstaADormir();
+                                        }
+                                    }
                                     return true;
                                 } else if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && equipe == pecaEquipaContraia.getEquipa()) {
                                     stats.jogadasValidas(equipe);
@@ -168,11 +173,16 @@ public class GameManager {
                             stats.jogadasValidas(equipe);
                             stats.rodadaSemCaptura();
                             mudaPecaJoker();
+                            for(Piece homerSimpson : pecas) {
+                                if(homerSimpson.getTipoPeca() == 6) {
+                                    homerSimpson.isEstaADormir();
+                                }
+                            }
                             return true;
                         }
 
 
-                    } else if (peca.validaMovimentos(x0, y0, x1, y1)) {
+                    } else if (peca.validaMovimentos(x0, y0, x1, y1 , stats.getRodada())) {
                         stats.jogadasInvalidas(equipe);
                         return false;
                     } else {
@@ -187,6 +197,11 @@ public class GameManager {
                                 stats.jogadasValidas(equipe);
                                 stats.rodadaSemCapturaReset();
                                 mudaPecaJoker();
+                                for(Piece homerSimpson : pecas) {
+                                    if(homerSimpson.getTipoPeca() == 6) {
+                                        homerSimpson.isEstaADormir();
+                                    }
+                                }
                                 return true;
                             } else if (pecaEquipaContraia.getPosicaoX() == x1 && pecaEquipaContraia.getPosicaoY() == y1 && equipe == pecaEquipaContraia.getEquipa()) {
                                 stats.jogadasValidas(equipe);
@@ -199,6 +214,11 @@ public class GameManager {
                         stats.jogadasValidas(equipe);
                         stats.rodadaSemCaptura();
                         mudaPecaJoker();
+                        for(Piece homerSimpson : pecas) {
+                            if(homerSimpson.getTipoPeca() == 6) {
+                                homerSimpson.isEstaADormir();
+                            }
+                        }
                         return true;
                     }
                 } else {
@@ -276,8 +296,19 @@ public class GameManager {
                         pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + piece.pecaJoker(personagemJoker) + " | " + String.valueOf(piece.getValor()) + " | " +
                                 String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
                     }
-                }
-                if (piece.getEstado().equals("em jogo")) {
+                } else if(piece.getTipoPeca() == 6) {
+                    if(piece.isEstaADormir()) {
+                        pieceInfoAsString += "Doh! zzzzzz";
+                    } else {
+                        if (piece.getEstado().equals("em jogo")) {
+                            pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + " | " + String.valueOf(piece.getValor()) + " | " +
+                                    String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                        } else if (piece.getEstado().equals("capturado")) {
+                            pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + " | " + String.valueOf(piece.getValor()) + " | " +
+                                    String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                        }
+                    }
+                } else if (piece.getEstado().equals("em jogo")) {
                     pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + " | " + String.valueOf(piece.getValor()) + " | " +
                             String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
                 } else if (piece.getEstado().equals("capturado")) {

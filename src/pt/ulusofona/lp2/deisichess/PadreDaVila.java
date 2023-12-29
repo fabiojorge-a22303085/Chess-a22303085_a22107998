@@ -31,11 +31,16 @@ public class PadreDaVila extends Piece {
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
     }
+    @Override
+    public void setAcordaOuDorme(int rodada) {
+
+    }
+
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         return false;
     }
 
-    public boolean validaMovimentos(int x0, int y0, int x1, int y1) {
+    public boolean validaMovimentos(int x0, int y0, int x1, int y1, int rodada) {
         if (x0 == x1 && y0 == y1) {
             return true;
         } else if (x0 - 3 != x1 && x0 + 3 != x1) {
