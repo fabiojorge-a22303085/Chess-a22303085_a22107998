@@ -105,6 +105,24 @@ public abstract class Piece {
         this.estado = "capturado";
     }
 
+    public String pecaJoker (int imitacaoJoker) {
+        if(imitacaoJoker == 1) {
+            return "Rainha";
+        } else if(imitacaoJoker == 2) {
+            return "Ponei Magico";
+        } else if(imitacaoJoker == 3) {
+            return "Padre da Vila";
+        } else if (imitacaoJoker == 4) {
+            return "TorreHor";
+        } else if (imitacaoJoker == 5) {
+            return "TorreVert";
+        } else if(imitacaoJoker == 6) {
+            return "Homer Simpson";
+        } else {
+            return "";
+        }
+    }
+
     public abstract boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker);
 
     public abstract boolean validaMovimentos(int x0, int y0, int x1, int y1);

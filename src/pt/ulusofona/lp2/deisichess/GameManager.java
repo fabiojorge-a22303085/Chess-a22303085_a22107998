@@ -268,6 +268,15 @@ public class GameManager {
         String pieceInfoAsString = "";
         for (Piece piece : pecas) {
             if (piece.getId() == ID) {
+                if(piece.getTipoPeca() == 7) {
+                    if (piece.getEstado().equals("em jogo")) {
+                        pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + "/" + piece.pecaJoker(personagemJoker) + " | " + String.valueOf(piece.getValor()) + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
+                    } else if (piece.getEstado().equals("capturado")) {
+                        pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + piece.pecaJoker(personagemJoker) + " | " + String.valueOf(piece.getValor()) + " | " +
+                                String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ (n/a)";
+                    }
+                }
                 if (piece.getEstado().equals("em jogo")) {
                     pieceInfoAsString += String.valueOf(piece.getId()) + " | " + piece.getTipoPecaAsString() + " | " + String.valueOf(piece.getValor()) + " | " +
                             String.valueOf(piece.getEquipa()) + " | " + piece.getAlcunha() + " @ " + piece.getPosicaoXY();
