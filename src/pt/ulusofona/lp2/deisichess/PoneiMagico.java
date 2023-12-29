@@ -5,6 +5,7 @@ public class PoneiMagico extends Piece {
     int valor;
     String icone;
     String tipoPecaAsString;
+
     public PoneiMagico(int id, int tipoPeca, int equipa, String alcunha) {
         super(id, tipoPeca, equipa, alcunha);
         this.valor = 5;
@@ -29,6 +30,9 @@ public class PoneiMagico extends Piece {
     @Override
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
+    }
+    public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
+        return false;
     }
 
     public boolean validaMovimentos(int x0, int y0, int x1, int y1) {

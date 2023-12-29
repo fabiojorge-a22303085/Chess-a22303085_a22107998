@@ -16,7 +16,7 @@ public abstract class Piece {
     int nrCapturas;
     int pontosPorCapturas;
     int nrjJogadasInvalidas;
-
+    boolean isJoker;
 
 
     public Piece(int id, int tipoPeca, int equipa, String alcunha) {
@@ -28,6 +28,7 @@ public abstract class Piece {
         this.nrCapturas = 0;
         this.pontosPorCapturas = 0;
         this.nrjJogadasInvalidas = 0;
+        this.isJoker = false;
     }
 
     public int getId() {
@@ -85,6 +86,10 @@ public abstract class Piece {
         return nrjJogadasInvalidas;
     }
 
+    public boolean isJoker() {
+        return isJoker;
+    }
+
     public void setPosicaoX(int posicaoX) {
         this.posicaoX = posicaoX;
     }
@@ -100,6 +105,10 @@ public abstract class Piece {
         this.estado = "capturado";
     }
 
+    public abstract boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker);
+
     public abstract boolean validaMovimentos(int x0, int y0, int x1, int y1);
+
+
 
 }

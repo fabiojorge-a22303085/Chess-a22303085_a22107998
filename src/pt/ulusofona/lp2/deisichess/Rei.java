@@ -5,6 +5,7 @@ public class Rei extends Piece {
     String icone;
     String tipoPecaAsString;
 
+
     public Rei(int id, int tipoPeca, int equipa, String alcunha) {
         super(id, tipoPeca, equipa, alcunha);
         this.valor = 1000;
@@ -30,6 +31,12 @@ public class Rei extends Piece {
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
     }
+
+    @Override
+    public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
+        return false;
+    }
+
 
     public boolean validaMovimentos(int x0, int y0, int x1, int y1) {
         if (x0 == x1 && y0 == y1) {

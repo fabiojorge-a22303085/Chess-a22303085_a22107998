@@ -5,6 +5,7 @@ public class TorreVert extends Piece {
     int valor;
     String icone;
     String tipoPecaAsString;
+
     public TorreVert(int id, int tipoPeca, int equipa, String alcunha) {
         super(id, tipoPeca, equipa, alcunha);
         this.valor = 3;
@@ -29,6 +30,9 @@ public class TorreVert extends Piece {
     @Override
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
+    }
+    public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
+        return false;
     }
 
     public boolean validaMovimentos(int x0, int y0, int x1, int y1) {

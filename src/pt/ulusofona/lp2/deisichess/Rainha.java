@@ -4,6 +4,7 @@ public class Rainha extends  Piece {
     int valor;
     String icone;
     String tipoPecaAsString;
+
     public Rainha(int id, int tipoPeca, int equipa, String alcunha) {
         super(id, tipoPeca, equipa, alcunha);
         this.valor = 8;
@@ -28,6 +29,9 @@ public class Rainha extends  Piece {
     @Override
     public String getTipoPecaAsString() {
         return tipoPecaAsString;
+    }
+    public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
+        return false;
     }
 
     public boolean validaMovimentos(int x0, int y0, int x1, int y1) {
