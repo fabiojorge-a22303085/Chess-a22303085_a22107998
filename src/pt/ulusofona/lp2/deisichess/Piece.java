@@ -67,7 +67,11 @@ public abstract class Piece {
     }
 
     public String getTipoPecaAsString() {
-        return tipoPecaAsString;
+        if(this.tipoPeca == 0) {
+            return "(infinito)";
+        } else {
+            return tipoPecaAsString;
+        }
     }
 
     public String getEstado() {

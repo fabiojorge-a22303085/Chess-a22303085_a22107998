@@ -16,7 +16,6 @@ public class PoneiMagico extends Piece {
         }
         this.tipoPecaAsString = "Ponei Mágico";
     }
-
     @Override
     public int getValor() {
         return valor;
@@ -25,11 +24,6 @@ public class PoneiMagico extends Piece {
     @Override
     public String getIcone() {
         return icone;
-    }
-
-    @Override
-    public String getTipoPecaAsString() {
-        return tipoPecaAsString;
     }
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         return false;

@@ -27,11 +27,6 @@ public class Joker extends Piece {
     public String getIcone() {
         return icone;
     }
-
-    @Override
-    public String getTipoPecaAsString() {
-        return tipoPecaAsString;
-    }
     @Override
     public void setAcordaOuDorme(int rodada) {
 

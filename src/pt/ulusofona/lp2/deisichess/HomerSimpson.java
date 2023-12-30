@@ -30,11 +30,6 @@ public class HomerSimpson extends Piece {
     }
 
     @Override
-    public String getTipoPecaAsString() {
-        return tipoPecaAsString;
-    }
-
-    @Override
     public boolean isEstaADormir() {
         return estaADormir;
     }

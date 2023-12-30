@@ -28,11 +28,6 @@ public class Rei extends Piece {
     }
 
     @Override
-    public String getTipoPecaAsString() {
-        return tipoPecaAsString;
-    }
-
-    @Override
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         return false;
     }

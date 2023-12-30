@@ -26,12 +26,6 @@ public class Rainha extends  Piece {
         return icone;
     }
 
-    @Override
-    public String getTipoPecaAsString() {
-        return tipoPecaAsString;
-    }
-
-
     public boolean movimentoImitado(int x0, int y0, int x1, int y1, int imitacaoJoker) {
         return false;
     }
