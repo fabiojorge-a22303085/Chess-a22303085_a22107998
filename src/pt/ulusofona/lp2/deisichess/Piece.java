@@ -61,17 +61,19 @@ public abstract class Piece {
     public String getPosicaoXY() {
         return "(" + posicaoX + ", " + posicaoY + ")";
     }
-
     public int getValor() {
         return valor;
     }
-
-    public String getTipoPecaAsString() {
-        if(this.tipoPeca == 0) {
+    public String getValorString() {
+        if(this.tipoPeca ==0) {
             return "(infinito)";
         } else {
-            return tipoPecaAsString;
+            return String.valueOf(valor);
         }
+    }
+
+    public String getTipoPecaAsString() {
+       return tipoPecaAsString;
     }
 
     public String getEstado() {
