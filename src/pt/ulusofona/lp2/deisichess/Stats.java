@@ -3,13 +3,17 @@ package pt.ulusofona.lp2.deisichess;
 public class Stats {
     int nrCapturasPretas = 0;
     int nrCapturasBrancas = 0;
+    int nrCapturasAmarelas = 0;
     int jogadasInvPretas = 0;
     int jogadasInvBrancas = 0;
+    int jogadasInvAmarelas = 0;
     int jogadasValPretas = 0;
-    int jogdasValBrancas = 0;
+    int jogadasValBrancas = 0;
+    int jogadasValAmarelas = 0;
     int rodada = 0;
-    int nrPecasPretas;
-    int nrPecasBrancas;
+    int nrPecasPretas = 0;
+    int nrPecasBrancas = 0;
+    int nrPecasAmarelas = 0;
     String resultado;
     int rodadasSemCaptura = 0;
 
@@ -20,8 +24,12 @@ public class Stats {
         return jogadasValPretas;
     }
 
-    public int getJogdasValBrancas() {
-        return jogdasValBrancas;
+    public int getJogadasValBrancas() {
+        return jogadasValBrancas;
+    }
+
+    public int getJogadasValAmarelas() {
+        return jogadasValAmarelas;
     }
 
     public int getNrCapturasPretas() {
@@ -32,12 +40,20 @@ public class Stats {
         return nrCapturasBrancas;
     }
 
+    public int getNrCapturasAmarelas() {
+        return nrCapturasAmarelas;
+    }
+
     public int getNrJogadasInvPretas() {
         return jogadasInvPretas;
     }
 
     public int getJogadasInvBrancas() {
         return jogadasInvBrancas;
+    }
+
+    public int getJogadasInvAmarelas() {
+        return jogadasInvAmarelas;
     }
 
     public String getResultado() {
@@ -54,12 +70,19 @@ public class Stats {
     public int getNrPecasBrancas() {
         return nrPecasBrancas;
     }
+
+    public int getNrPecasAmarelas() {
+        return nrPecasAmarelas;
+    }
+
     public void incrementaPreta() {
         nrPecasPretas++;
     }
     public void incrementaBranca() {
         nrPecasBrancas++;
-
+    }
+    public void incrementaAmarela() {
+        nrPecasAmarelas++;
     }
     public void decrementaBranca() {
         nrPecasBrancas--;
@@ -67,6 +90,9 @@ public class Stats {
     }
     public void decrementaPreta() {
         nrPecasPretas--;
+    }
+    public void decrementaAmarela() {
+        nrPecasAmarelas--;
     }
     public void rodadaSemCaptura() {
         rodadasSemCaptura++;
@@ -88,28 +114,35 @@ public class Stats {
         this.rodada = rodada;
     }
 
-    public void capturaPretas() {
-        nrCapturasPretas++;
-
-    }
-    public void capturasBrancas() {
-        nrCapturasBrancas++;
+    public void capturaPeca(int teamId) {
+        if(teamId == 10) {
+            nrCapturasPretas++;
+        } else if(teamId == 20) {
+            nrCapturasBrancas++;
+        } else if(teamId == 30) {
+            nrCapturasAmarelas++;
+        }
     }
     public void jogadasInvalidas(int idEquipa) {
         if(idEquipa == 10) {
             jogadasInvPretas++;
         } else if (idEquipa == 20) {
             jogadasInvBrancas++;
+        } else if(idEquipa == 30) {
+            jogadasInvAmarelas++;
         }
-    }
-    public void proximaRodada() {
-        rodada++;
     }
     public void jogadasValidas(int idEquipa) {
         if(idEquipa == 10) {
             jogadasValPretas++;
         } else if (idEquipa == 20) {
-            jogdasValBrancas++;
+            jogadasValBrancas++;
+        } else if(idEquipa == 30) {
+            jogadasValAmarelas++;
         }
     }
+    public void proximaRodada() {
+        rodada++;
+    }
+
 }
